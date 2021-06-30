@@ -71,6 +71,7 @@ def sign_up():
             password=form.data['password'],
             first_name=form.data['first_name'],
             last_name=form.data['last_name'],
+            pronouns=''
         )
         print('inside the auth route')
         db.session.add(user)
