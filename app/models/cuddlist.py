@@ -15,11 +15,10 @@ class Cuddlist(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "name": self.name,
-            "description": self.description,
+            "session_price": self.session_price,
+            "travel_price": self.travel_price,
+            "about_me": self.about_me,
+            "session_info": self.session_info,
             "location": self.location,
-            "pet_friendly": self.pet_friendly,
-            "private": self.private,
-            "available": self.available,
             "user_id": self.user_id
         }
