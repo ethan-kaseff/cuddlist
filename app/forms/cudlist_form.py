@@ -19,6 +19,7 @@ class CuddlistForm(FlaskForm):
     last_name = StringField('last name', validators=[DataRequired()])
     pronouns = StringField('pronouns', validators=[])
     session_price = IntegerField('session price')
+    travel_price = IntegerField('travel price')
     about_me = TextAreaField('about me')
     session_info = TextAreaField('session info')
     location = TextAreaField('location')
