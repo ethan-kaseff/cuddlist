@@ -11,11 +11,13 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [cuddlist, setCuddlist] = useState(false);
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    console.log(firstName, lastName, email, '......._____________________________')
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(email, password, firstName, lastName));
+      const data = await dispatch(signUp(email, password, firstName, lastName, cuddlist));
       // could set errors later 
     }
   };
@@ -38,6 +40,10 @@ const SignUpForm = () => {
 
   const updateLastName = (e) => {
     setLastName(e.target.value);
+  };
+
+  const updateCuddlist = (e) => {
+    setCuddlist(!cuddlist);
   };
 
   if (user) {
@@ -90,6 +96,15 @@ const SignUpForm = () => {
           name="lastName"
           onChange={updateLastName}
           value={lastName}
+        ></input>
+      </div >
+      <div>
+        <label>Sign up as a Cuddlist?</label>
+        <input
+          type="checkbox"
+          name="cuddlist"
+          onChange={updateCuddlist}
+          value={cuddlist}
         ></input>
       </div >
       <button type="submit">Sign Up</button>

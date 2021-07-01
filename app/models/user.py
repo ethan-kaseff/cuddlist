@@ -6,6 +6,8 @@ from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
+    __mapper_args__ = {'polymorphic_identity': 'users',
+                       'polymorphic_on': 'type'}
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
@@ -13,6 +15,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(20), nullable=False)
     last_name = db.Column(db.String(40), nullable=False)
     pronouns = db.Column(db.String(20))
+    type = db.Column(db.String(20))
 
     @property
     def password(self):

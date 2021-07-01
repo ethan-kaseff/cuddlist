@@ -4,7 +4,9 @@ from .user import User
 
 class Client(User):
     __tablename__ = 'clients'
+    __mapper_args__ = {'polymorphic_identity': 'clients'}
 
+    id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     phone_number = db.Column(db.Integer)
 
     def to_dict(self):
