@@ -56,7 +56,7 @@ export const logout = () => async (dispatch) => {
     dispatch(removeUser())
 }
 
-export const signUp = (email, password, firstName, lastName) => async (dispatch) => {
+export const signUp = (email, password, firstName, lastName, cuddlist) => async (dispatch) => {
     const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
@@ -65,11 +65,11 @@ export const signUp = (email, password, firstName, lastName) => async (dispatch)
         body: JSON.stringify({
             email,
             password,
-            firstName,
-            lastName,
+            first_name: firstName,
+            last_name: lastName,
+            cuddlist
         }),
     });
-    console.log('inside thesignup thunk')
     const data = await response.json()
     dispatch(setUser(data))
 }

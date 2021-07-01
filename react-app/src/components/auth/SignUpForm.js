@@ -15,6 +15,7 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    console.log(firstName, lastName, email, '......._____________________________')
     if (password === repeatPassword) {
       const data = await dispatch(signUp(email, password, firstName, lastName, cuddlist));
       // could set errors later 
@@ -42,7 +43,7 @@ const SignUpForm = () => {
   };
 
   const updateCuddlist = (e) => {
-    setCuddlist(e.target.value);
+    setCuddlist(!cuddlist);
   };
 
   if (user) {
@@ -100,7 +101,7 @@ const SignUpForm = () => {
       <div>
         <label>Sign up as a Cuddlist?</label>
         <input
-          type="radio"
+          type="checkbox"
           name="cuddlist"
           onChange={updateCuddlist}
           value={cuddlist}

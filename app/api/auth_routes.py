@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Cuddlist, Client
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -61,19 +61,26 @@ def sign_up():
     Creates a new user and logs them in
     """
     form = SignUpForm()
-    print('inside the  auth route before ')
     form['csrf_token'].data = request.cookies['csrf_token']
+    cuddlist = form.data['cuddlist']
     # if form.validate_on_submit():
     if request.method == "POST":
-        print('right after validation ')
-        user = User(
-            email=form.data['email'],
-            password=form.data['password'],
-            first_name=form.data['first_name'],
-            last_name=form.data['last_name'],
-            pronouns=''
-        )
-        print('inside the auth route')
+        if cuddlist:
+            user = Cuddlist(
+                email=form.data['email'],
+                password=form.data['password'],
+                first_name=form.data['first_name'],
+                last_name=form.data['last_name'],
+                pronouns='',
+            )
+        else:
+            user = Client(
+                email=form.data['email'],
+                password=form.data['password'],
+                first_name=form.data['first_name'],
+                last_name=form.data['last_name'],
+                pronouns='',
+            )
         db.session.add(user)
         db.session.commit()
         login_user(user)
