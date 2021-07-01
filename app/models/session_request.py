@@ -10,5 +10,5 @@ class Session_Request(db.Model):
     cuddler_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     form = db.Column(JSON, nullable=False)
 
-    client = db.relationship('Client', foreign_keys=[client_id])
-    cuddler = db.relationship('Cuddler', foreign_keys=[cuddler_id])
+    client = db.relationship('User', foreign_keys=[client_id])
+    cuddler = db.relationship('User', foreign_keys=[cuddler_id])

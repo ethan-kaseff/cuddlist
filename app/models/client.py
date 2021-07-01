@@ -9,6 +9,8 @@ class Client(User):
     phone_number = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
+    # request = db.relationship('Session_Request', foreign_keys='Session_Request.client_id', back_populates='client')
+
     def to_dict(self):
         return {
             "id": self.id,

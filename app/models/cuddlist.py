@@ -13,6 +13,9 @@ class Cuddlist(User):
     location = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
+    # request = db.relationship(
+    #     'Session_Request', foreign_keys='Session_Request.cuddler_id', back_populates='cuddler')
+
     def to_dict(self):
         return {
             "id": self.id,
