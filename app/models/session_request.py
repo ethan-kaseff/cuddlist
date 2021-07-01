@@ -12,7 +12,7 @@ class Session_Request(db.Model):
 
     client = db.relationship('Client', foreign_keys=[
                              client_id], backref='session_requests',
-                             useList=False)
+                             uselist=False)
     cuddler = db.relationship('Cuddlist', foreign_keys=[
                               cuddler_id], backref='session_requests',
-                              useList=False)
+                              uselist=False)
