@@ -5,14 +5,11 @@ from .user import User
 class Cuddlist(User):
     __tablename__ = 'cuddlists'
 
-    id = db.Column(db.Integer, primary_key=True)
     session_price = db.Column(db.Integer)
     travel_price = db.Column(db.Integer)
     about_me = db.Column(db.Text)
     session_info = db.Column(db.Text)
     location = db.Column(db.String(100))
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-
 
     def to_dict(self):
         return {
@@ -22,5 +19,8 @@ class Cuddlist(User):
             "about_me": self.about_me,
             "session_info": self.session_info,
             "location": self.location,
-            "user_id": self.user_id
+            "email": self.email,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "pronouns": self.pronouns
         }
