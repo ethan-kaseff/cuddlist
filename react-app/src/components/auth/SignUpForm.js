@@ -11,6 +11,7 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [cuddlist, setCuddlist] = useState(false);
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -38,6 +39,10 @@ const SignUpForm = () => {
 
   const updateLastName = (e) => {
     setLastName(e.target.value);
+  };
+
+  const updateCuddlist = (e) => {
+    setCuddlist(e.target.value);
   };
 
   if (user) {
@@ -90,6 +95,15 @@ const SignUpForm = () => {
           name="lastName"
           onChange={updateLastName}
           value={lastName}
+        ></input>
+      </div >
+      <div>
+        <label>Sign up as a Cuddlist?</label>
+        <input
+          type="radio"
+          name="cuddlist"
+          onChange={updateCuddlist}
+          value={cuddlist}
         ></input>
       </div >
       <button type="submit">Sign Up</button>

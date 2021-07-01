@@ -1,16 +1,31 @@
 from werkzeug.security import generate_password_hash
-from app.models import db, User
+from app.models import db, Client, Cuddlist
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
 
-    demo = User(email='demo@aa.io',
-                password='password',
-                first_name='joe',
-                last_name='shmoe')
+    client1 = Client(email='client1@client.com',
+                    password='password',
+                    first_name='joe',
+                    last_name='shmoe')
+    client2 = Client(email='client2@client.com',
+                    password='password',
+                    first_name='jane',
+                    last_name='woops')
+    cuddlist1 = Cuddlist(email='cuddlist1@cuddlist.com',
+                    password='password',
+                    first_name='jack',
+                    last_name='shmap')
+    cuddlist2 = Cuddlist(email='cuddlist2@cuddlist.com',
+                    password='password',
+                    first_name='brack',
+                    last_name='smaptsy')
 
-    db.session.add(demo)
+    db.session.add(client1)
+    db.session.add(client2)
+    db.session.add(cuddlist1)
+    db.session.add(cuddlist2)
 
     db.session.commit()
 
