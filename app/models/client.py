@@ -1,12 +1,13 @@
 from .db import db
+from .user import User
 
 
-class Client(db.Model):
+class Client(User):
     __tablename__ = 'clients'
 
     id = db.Column(db.Integer, primary_key=True)
     phone_number = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     def to_dict(self):
         return {

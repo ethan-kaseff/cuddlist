@@ -1,7 +1,8 @@
 from .db import db
+from .user import User
 
 
-class Cuddlist(db.Model):
+class Cuddlist(User):
     __tablename__ = 'cuddlists'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -10,7 +11,7 @@ class Cuddlist(db.Model):
     about_me = db.Column(db.Text, nullable=False)
     session_info = db.Column(db.Text, nullable=False)
     location = db.Column(db.String(100), nullable=False)
-    user_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     def to_dict(self):
         return {

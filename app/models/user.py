@@ -14,10 +14,10 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(40), nullable=False)
     pronouns = db.Column(db.String(20))
 
-    # cuddlist = db.relationship(
-    #     'Cuddlist', foreign_keys='Cuddlist.id', backref='user', uselist=False)
-    # client = db.relationship(
-    #     'Client', foreign_keys='Client.id', backref='user', uselist=False)
+    cuddlist = db.relationship(
+        'Cuddlist', foreign_keys='Cuddlist.user_id', backref='user', uselist=False)
+    client = db.relationship(
+        'Client', foreign_keys='Client.user_id', backref='user', uselist=False)
 
     @property
     def password(self):
