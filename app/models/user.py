@@ -19,10 +19,6 @@ class User(db.Model, UserMixin):
     client = db.relationship(
         'Client', foreign_keys='Client.user_id', backref='user', uselist=False)
 
-    request = db.relationship(
-        'Session_Request', foreign_keys='Session_Request.cuddler_id', back_populates='cuddler')
-    request = db.relationship(
-        'Session_Request', foreign_keys='Session_Request.client_id', back_populates='client')
 
     @property
     def password(self):

@@ -6,15 +6,13 @@ class Cuddlist(User):
     __tablename__ = 'cuddlists'
 
     id = db.Column(db.Integer, primary_key=True)
-    session_price = db.Column(db.Integer, nullable=False)
-    travel_price = db.Column(db.Integer, nullable=False)
-    about_me = db.Column(db.Text, nullable=False)
-    session_info = db.Column(db.Text, nullable=False)
-    location = db.Column(db.String(100), nullable=False)
+    session_price = db.Column(db.Integer)
+    travel_price = db.Column(db.Integer)
+    about_me = db.Column(db.Text)
+    session_info = db.Column(db.Text)
+    location = db.Column(db.String(100))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
-    # request = db.relationship(
-    #     'Session_Request', foreign_keys='Session_Request.cuddler_id', back_populates='cuddler')
 
     def to_dict(self):
         return {
