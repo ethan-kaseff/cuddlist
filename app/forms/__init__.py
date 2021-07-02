@@ -1,3 +1,3 @@
 from .login_form import LoginForm
 from .signup_form import SignUpForm
-from .cudlist_form import CuddlistForm
+from .user_form import UserForm
