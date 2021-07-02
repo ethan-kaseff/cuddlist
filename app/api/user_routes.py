@@ -15,13 +15,9 @@ def users():
 
 @user_routes.route('/<int:id>', methods=['PUT', 'DELETE'])
 # @login_required
-def updateProfile(id):
-    print('********************************MADE  IT MADE    MADE IT ***************************')
     user = User.query.get(id)
 
     if user.type == 'cuddlists':
-
-        print('******************************* CUDDLIST CUDDLIST CUDDLIST ***************************')
         form = UserForm()
 
         client_cuddlist = Cuddlist.query.get(id)
@@ -34,7 +30,6 @@ def updateProfile(id):
         client_cuddlist.location = form.data['location']
 
     else:
-        print('********************************CLIENT CLIENT CLIENT ***************************')
         form = UserForm()
 
         client_cuddlist = Client.query.get(id)
@@ -49,8 +44,6 @@ def updateProfile(id):
         db.session.delete(client_cuddlist)
 
     db.session.commit()
-
-    print('********************************ABOUT TO COMMIT COMMIT COMMIT COMMIT ***************************')
 
     return client_cuddlist.to_dict()
 
