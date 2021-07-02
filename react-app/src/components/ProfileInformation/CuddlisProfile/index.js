@@ -15,7 +15,7 @@ const CuddlistProfile = ({context}) => {
     aboutMe, setAboutMe,
     sessionInfo, setSessionInfo} = context
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const user = useSelector(state => state.session.user);
   const updateUser = useSelector(state => state.session.updateUser);
@@ -42,15 +42,15 @@ const CuddlistProfile = ({context}) => {
     }
   })
 
-  // Update store for each keystroke in each field 
-  useEffect(() => {
-    updateUser.session_price = sessionPrice;
-    updateUser.travel_price = travelPrice;
-    updateUser.location = location;
-    updateUser.about_me = aboutMe;
-    updateUser.session_info = sessionInfo;
-    dispatch(setUpdateUser(updateUser))
-  }, [sessionPrice, travelPrice, location, aboutMe, sessionInfo])
+  // // Update store for each keystroke in each field 
+  // useEffect(() => {
+  //   updateUser.session_price = sessionPrice;
+  //   updateUser.travel_price = travelPrice;
+  //   updateUser.location = location;
+  //   updateUser.about_me = aboutMe;
+  //   updateUser.session_info = sessionInfo;
+  //   dispatch(setUpdateUser(updateUser))
+  // }, [sessionPrice, travelPrice, location, aboutMe, sessionInfo])
 
 
   return (
