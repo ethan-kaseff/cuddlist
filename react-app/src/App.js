@@ -6,7 +6,7 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
-import ProfilePage from "./components/ProfilePage";
+import ProfileInformation from "./components/ProfilePage";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 
@@ -48,7 +48,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute>
           <Route path='/profile-page' exact={true}>
-            <ProfilePage />
+            <ProfileInformation />
           </Route>
         </ProtectedRoute>
       </Switch>

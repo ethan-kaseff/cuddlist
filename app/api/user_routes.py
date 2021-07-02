@@ -13,13 +13,6 @@ def users():
     return {"users": [user.to_dict() for user in users]}
 
 
-@user_routes.route('/<int:id>')
-@login_required
-def user(id):
-    user = User.query.get(id)
-    return user.to_dict()
-
-
 @user_routes.route('/<int:id>', methods=['POST', 'DELETE'])
 # @login_required
 def updateProfile(id):
@@ -57,3 +50,16 @@ def updateProfile(id):
         db.session.commit()
 
     return client_cuddlist.to_dict()
+
+
+@user_routes.route('/<int:id>')
+# @login_required
+def getProfile(id):
+    user = User.query.get(id)
+
+    if user.type == "cuddlists":
+        cuddlist = Cuddlist.query.get(id)
+        return cuddlist.to_dict()
+    else:
+        client = Client.query.get(id)
+        return client.to_dict()
