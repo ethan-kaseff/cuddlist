@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, User, Cuddlist, Client
 from app.forms import UserForm
 
@@ -13,19 +13,15 @@ def users():
     return {"users": [user.to_dict() for user in users]}
 
 
-@user_routes.route('/<int:id>', methods=['POST', 'DELETE'])
+@user_routes.route('/<int:id>', methods=['PUT', 'DELETE'])
 # @login_required
 def updateProfile(id):
-    user = User.query.get(id)
 
-    if user.type == 'cuddlists':
+    if current_user.type == 'cuddlists':
         form = UserForm()
 
         client_cuddlist = Cuddlist.query.get(id)
 
-        client_cuddlist.first_name = form.data['first_name']
-        client_cuddlist.last_name = form.data['last_name']
-        client_cuddlist.pronouns = form.data['pronouns']
         client_cuddlist.session_price = form.data['session_price']
         client_cuddlist.travel_price = form.data['travel_price']
         client_cuddlist.about_me = form.data['about_me']
@@ -37,17 +33,16 @@ def updateProfile(id):
 
         client_cuddlist = Client.query.get(id)
 
-        client_cuddlist.first_name = form.data['first_name']
-        client_cuddlist.last_name = form.data['last_name']
-        client_cuddlist.pronouns = form.data['pronouns']
         client_cuddlist.phone_number = form.data['phone_number']
 
-    if request.method == 'POST':
-        db.session.commit()
+    client_cuddlist.first_name = form.data['first_name']
+    client_cuddlist.last_name = form.data['last_name']
+    client_cuddlist.pronouns = form.data['pronouns']
 
-    elif request.method == 'DELETE':
+    if request.method == 'DELETE':
         db.session.delete(client_cuddlist)
-        db.session.commit()
+
+    db.session.commit()
 
     return client_cuddlist.to_dict()
 
