@@ -1,10 +1,16 @@
 // constants 
 const SET_USER = 'session/SET_USER'
+const SET_UPDATE_USER = 'session/SET_UPDATE_USER'
 const REMOVE_USER = 'session/REMOVE_USER'
 
 // action creators 
 const setUser = (user) => ({
     type: SET_USER,
+    payload: user
+})
+
+export const setUpdateUser = (user) => ({
+    type: SET_UPDATE_USER,
     payload: user
 })
 
@@ -76,13 +82,15 @@ export const signUp = (email, password, firstName, lastName, cuddlist) => async 
 
 
 
-// reducer r 
+// reducer
 const initialState = {}
 
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_USER:
-            return {user: action.payload}
+            return {user: action.payload, updateUser: action.payload}
+        case SET_UPDATE_USER:
+            return {...state, updateUser: action.payload}
         case REMOVE_USER:
             return {user: null}
         default:
