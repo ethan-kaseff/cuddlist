@@ -72,6 +72,7 @@ def sign_up():
                 first_name=form.data['first_name'],
                 last_name=form.data['last_name'],
                 pronouns='',
+                session_price=80
             )
         else:
             user = Client(
