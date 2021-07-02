@@ -7,7 +7,7 @@ class Client(User):
     __mapper_args__ = {'polymorphic_identity': 'clients'}
 
     id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-    phone_number = db.Column(db.Integer)
+    phone_number = db.Column(db.String)
 
     def to_dict(self):
         return {
