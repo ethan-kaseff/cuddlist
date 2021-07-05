@@ -16,13 +16,13 @@ class Cuddlist(User):
     def to_dict(self):
         return {
             "id": self.id,
-            "first_name": self.first_name,
-            "last_name": self.last_name,
+            "firstName": self.first_name,
+            "lastName": self.last_name,
             "pronouns": self.pronouns,
-            "session_price": self.session_price,
-            "travel_price": self.travel_price,
-            "about_me": self.about_me,
-            "session_info": self.session_info,
+            "sessionPrice": self.session_price,
+            "travelPrice": self.travel_price,
+            "aboutMe": self.about_me,
+            "sessionInfo": self.session_info,
             "location": self.location,
             "email": self.email,
         }
