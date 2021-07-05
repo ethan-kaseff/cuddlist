@@ -32,17 +32,17 @@ const ProfileInformation = () => {
 
   // Field values to keep in local state
   // User
-  const [firstName, setFirstName] = useState(user.first_name);
-  const [lastName, setLastName] = useState(user.last_name);
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
   const [pronouns, setPronouns] = useState(user.pronouns);
   // Cuddlist
-  const [sessionPrice, setSessionPrice] = useState(user.session_price);
-  const [travelPrice, setTravelPrice] = useState(user.travel_price);
+  const [sessionPrice, setSessionPrice] = useState(user.sessionPrice);
+  const [travelPrice, setTravelPrice] = useState(user.travelPrice);
   const [location, setLocation] = useState(user.location);
-  const [aboutMe, setAboutMe] = useState(user.about_me);
-  const [sessionInfo, setSessionInfo] = useState(user.session_info);
+  const [aboutMe, setAboutMe] = useState(user.aboutMe);
+  const [sessionInfo, setSessionInfo] = useState(user.sessionInfo);
   // Client
-  const [phoneNumber, setPhoneNumber] = useState(user.phone_number);
+  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
 
   const cuddlistContext = {
     editSessionPrice, setEditSessionPrice,
