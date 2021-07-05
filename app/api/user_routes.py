@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, User, Cuddlist, Client
+from sqlalchemy import distinct
+from app.models import cuddlist, db, User, Cuddlist, Client, user
 from app.forms import UserForm
 
 user_routes = Blueprint('users', __name__)
@@ -51,6 +52,20 @@ def updateUsers(id):
     db.session.commit()
 
     return client_cuddlist.to_dict()
+
+
+@user_routes.route('/cuddlist-locations')
+def cuddlistLocations():
+    query = Cuddlist.query.with_entities(Cuddlist.location).distinct()
+    locations = {row.location: row.location for row in query.all()
+                 if row.location}
+    return locations
+
+
+@user_routes.route('/cuddlists/<string:location>')
+def availableCuddlists(location):
+    cuddlists = Cuddlist.query.filter(Cuddlist.location == location).all()
+    return {"cuddlists": [cuddlist.to_dict() for cuddlist in cuddlists]}
 
 
 @user_routes.route('/')
