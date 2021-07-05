@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 
-const ClientProfile = ({context}) => {
+const ClientInfo = ({context}) => {
   const user = useSelector(state => state.session.user);
   const { editPhoneNumber, setEditPhoneNumber,
     phoneNumber, setPhoneNumber} = context
@@ -35,4 +35,4 @@ const ClientProfile = ({context}) => {
   )
 }
 
-export default ClientProfile
+export default ClientInfo

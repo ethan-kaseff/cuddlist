@@ -1,6 +1,5 @@
 // constants 
 const SET_USER = 'session/SET_USER'
-const UPDATE_USER = '/user/UPDATE_USER'
 const REMOVE_USER = 'session/REMOVE_USER'
 
 // action creators 
@@ -84,7 +83,6 @@ export const updateUserDb =(id,
                             travelPrice, 
                             aboutMe, 
                             sessionInfo) =>async (dispatch) => {
-    console.log('a;lksdjf ;alskdjf ;alkdsjf ;lksj;())()))()(&^)(&^)(*&)(*&)(*&)(*&(*&)(*&)(*&)(*&)(*&')
     const response = await fetch(`/api/users/${id}/`, {
         method: "PUT",
         headers: {

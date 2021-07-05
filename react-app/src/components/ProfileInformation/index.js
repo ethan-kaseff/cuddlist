@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import CuddlistProfile from "./CuddlisProfile";
-import ClientProfile from "./ClientProfile";
+import CuddlistInfo from "./CuddlistInfo";
+import ClientInfo from "./ClientInfo";
 import {updateUserDb} from '../../store/session'
 
 const ProfileInformation = () => {
@@ -32,17 +32,17 @@ const ProfileInformation = () => {
 
   // Field values to keep in local state
   // User
-  const [firstName, setFirstName] = useState(user.first_name);
-  const [lastName, setLastName] = useState(user.last_name);
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
   const [pronouns, setPronouns] = useState(user.pronouns);
   // Cuddlist
-  const [sessionPrice, setSessionPrice] = useState(user.session_price);
-  const [travelPrice, setTravelPrice] = useState(user.travel_price);
+  const [sessionPrice, setSessionPrice] = useState(user.sessionPrice);
+  const [travelPrice, setTravelPrice] = useState(user.travelPrice);
   const [location, setLocation] = useState(user.location);
-  const [aboutMe, setAboutMe] = useState(user.about_me);
-  const [sessionInfo, setSessionInfo] = useState(user.session_info);
+  const [aboutMe, setAboutMe] = useState(user.aboutMe);
+  const [sessionInfo, setSessionInfo] = useState(user.sessionInfo);
   // Client
-  const [phoneNumber, setPhoneNumber] = useState(user.phone_number);
+  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
 
   const cuddlistContext = {
     editSessionPrice, setEditSessionPrice,
@@ -157,8 +157,8 @@ const ProfileInformation = () => {
             </>
           }
         </div>
-        {user.session_price && <CuddlistProfile context={cuddlistContext}/>}
-        {!user.session_price && <ClientProfile context={clientContext}/>}
+        {user.session_price && <CuddlistInfo context={cuddlistContext}/>}
+        {!user.session_price && <ClientInfo context={clientContext}/>}
         <button type='submit'>Save</button>
       </form>
     </>

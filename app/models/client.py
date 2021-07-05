@@ -12,9 +12,9 @@ class Client(User):
     def to_dict(self):
         return {
             "id": self.id,
-            "phone_number": self.phone_number,
+            "phoneNumber": self.phone_number,
             "email": self.email,
-            "first_name": self.first_name,
-            "last_name": self.last_name,
+            "firstName": self.first_name,
+            "lastName": self.last_name,
             "pronouns": self.pronouns
         }
