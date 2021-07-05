@@ -84,7 +84,8 @@ export const updateUserDb =(id,
                             travelPrice, 
                             aboutMe, 
                             sessionInfo) =>async (dispatch) => {
-    const response = await fetch(`/api/users/${id}`, {
+    console.log('a;lksdjf ;alskdjf ;alkdsjf ;lksj;())()))()(&^)(&^)(*&)(*&)(*&)(*&(*&)(*&)(*&)(*&)(*&')
+    const response = await fetch(`/api/users/${id}/`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

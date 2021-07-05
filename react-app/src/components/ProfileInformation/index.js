@@ -72,24 +72,17 @@ const ProfileInformation = () => {
   })
 
   // Update store for each keystroke in each field 
-  const isOnlySpaces = (string) => {
-    if (!string.replace(/\s/g, '').length) {
-
+  const validate = (string) => {
+    if (!firstName.length == 0 && firstName.trim()) {
+      updateUser.first_name = firstName;
     }
   }
 
-  // useEffect(() => {
-  //   if (!firstName.length == 0 && firstName.trim()) {
-  //     updateUser.first_name = firstName;
 
-  //   }
-  //   console.log(firstName.trim())
-  //   updateUser.last_name = lastName;
-  //   updateUser.pronouns = pronouns;
-  //   dispatch(setUpdateUser(updateUser))
-  // }, [firstName, lastName, pronouns])
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('in the handle funciton ')
     if (user.session_price) {
       dispatch(updateUserDb(user.id,
                             firstName, 
