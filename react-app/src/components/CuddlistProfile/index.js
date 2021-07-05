@@ -1,15 +1,25 @@
 import React, { useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getCuddlist } from "../../store/cuddlist";
 
 const CuddlistProfile = () => {
+  const dispatch = useDispatch();
+
   const {id} = useParams()
+  console.log(id)
+  // dispatch(getCuddlist(id))
+
   const cuddlist = useSelector(state => state.cuddlist.current)
+  // const cuddlist = useSelector(state => state.session.user)
 
   useEffect(() => {
-    dispatch(getCuddlist(id))
-  })
+    const data = dispatch(getCuddlist(id))
+    console.log(data)
+  }, [dispatch])
 
+
+  console.log("-------------------about to go into the html --------")
   return (
     <>
       <div className='cuddlist__container'>

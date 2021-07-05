@@ -6,11 +6,20 @@ from app.forms import UserForm
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/')
-@login_required
-def users():
-    users = User.query.all()
-    return {"users": [user.to_dict() for user in users]}
+@user_routes.route('/<int:id>')
+def getProfile(id):
+    print('------------------------------made it into route---------------------------')
+    user = User.query.get(id)
+    print(user)
+    if user.type == "cuddlists":
+        cuddlist = Cuddlist.query.get(id)
+        print('this is the cuddlist object')
+        print(cuddlist.to_dict())
+        print('after trying to print the object')
+        return cuddlist.to_dict()
+    else:
+        client = Client.query.get(id)
+        return client.to_dict()
 
 
 @user_routes.route('/<int:id>/', methods=['PUT', 'DELETE'])
@@ -48,14 +57,8 @@ def updateUsers(id):
     return client_cuddlist.to_dict()
 
 
-@user_routes.route('/<int:id>')
-# @login_required
-def getProfile(id):
-    user = User.query.get(id)
-
-    if user.type == "cuddlists":
-        cuddlist = Cuddlist.query.get(id)
-        return cuddlist.to_dict()
-    else:
-        client = Client.query.get(id)
-        return client.to_dict()
+@user_routes.route('/')
+@login_required
+def users():
+    users = User.query.all()
+    return {"users": [user.to_dict() for user in users]}

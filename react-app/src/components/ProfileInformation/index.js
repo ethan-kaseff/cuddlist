@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import CuddlistProfile from "./CuddlisProfile";
-import ClientProfile from "./ClientProfile";
+import CuddlistInfo from "./CuddlistInfo";
+import ClientInfo from "./ClientInfo";
 import {updateUserDb} from '../../store/session'
 
 const ProfileInformation = () => {
@@ -157,8 +157,8 @@ const ProfileInformation = () => {
             </>
           }
         </div>
-        {user.session_price && <CuddlistProfile context={cuddlistContext}/>}
-        {!user.session_price && <ClientProfile context={clientContext}/>}
+        {user.session_price && <CuddlistInfo context={cuddlistContext}/>}
+        {!user.session_price && <ClientInfo context={clientContext}/>}
         <button type='submit'>Save</button>
       </form>
     </>

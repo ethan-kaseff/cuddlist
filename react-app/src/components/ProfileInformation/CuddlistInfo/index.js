@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { setUpdateUser } from '../../../store/session'
 
-const CuddlistProfile = ({context}) => {
+const CuddlistInfo = ({context}) => {
   const {
     editSessionPrice, setEditSessionPrice,
     editTravelPrice, setEditTravelPrice,
@@ -131,4 +131,4 @@ const CuddlistProfile = ({context}) => {
   )
 }
 
-export default CuddlistProfile
+export default CuddlistInfo
