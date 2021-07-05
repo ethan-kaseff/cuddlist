@@ -9,17 +9,8 @@ const setCuddlist = (cuddlist) => ({
 
 // thunks 
 export const getCuddlist = (id) => async (dispatch) => {
-
-  console.log("-------------I'm in the thunk----------------")
-
   const response = await fetch(`/api/users/${id}`)
-
-  console.log(response)
-
   const data = await response.json()
-
-  console.log('after awaiting the response', data)
-
   dispatch(setCuddlist(data))
 }
 

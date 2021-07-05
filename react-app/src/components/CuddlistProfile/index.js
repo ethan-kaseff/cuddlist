@@ -5,21 +5,14 @@ import { getCuddlist } from "../../store/cuddlist";
 
 const CuddlistProfile = () => {
   const dispatch = useDispatch();
-
   const {id} = useParams()
-  console.log(id)
-  // dispatch(getCuddlist(id))
-
   const cuddlist = useSelector(state => state.cuddlist.current)
-  // const cuddlist = useSelector(state => state.session.user)
 
   useEffect(() => {
     const data = dispatch(getCuddlist(id))
     console.log(data)
   }, [dispatch])
 
-
-  console.log("-------------------about to go into the html --------")
   return (
     <>
       <div className='cuddlist__container'>
