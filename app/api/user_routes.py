@@ -13,14 +13,15 @@ def users():
     return {"users": [user.to_dict() for user in users]}
 
 
-@user_routes.route('/<int:id>', methods=['PUT', 'DELETE'])
+@user_routes.route('/<int:id>/', methods=['PUT', 'DELETE'])
 # @login_required
-def updateProfile(id):
+def updateUsers(id):
+    user = User.query.get(id)
 
-    if current_user.type == 'cuddlists':
+    if user.type == 'cuddlists':
         form = UserForm()
-
         client_cuddlist = Cuddlist.query.get(id)
+        print(client_cuddlist)
 
         client_cuddlist.session_price = form.data['session_price']
         client_cuddlist.travel_price = form.data['travel_price']

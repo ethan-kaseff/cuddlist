@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import CuddlistProfile from "./CuddlisProfile";
 import ClientProfile from "./ClientProfile";
-import {setUpdateUser} from '../../store/session'
+import {updateUserDb} from '../../store/session'
 
 const ProfileInformation = () => {
   const dispatch = useDispatch();
@@ -72,25 +72,35 @@ const ProfileInformation = () => {
   })
 
   // Update store for each keystroke in each field 
-  const isOnlySpaces = (string) => {
-    if (!string.replace(/\s/g, '').length) {
-
+  const validate = (string) => {
+    if (!firstName.length == 0 && firstName.trim()) {
+      updateUser.first_name = firstName;
     }
   }
 
-  useEffect(() => {
-    if (!firstName.length == 0 && firstName.trim()) {
-      updateUser.first_name = firstName;
 
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('in the handle funciton ')
+    if (user.session_price) {
+      dispatch(updateUserDb(user.id,
+                            firstName, 
+                            lastName, 
+                            pronouns, 
+                            location, 
+                            sessionPrice, 
+                            travelPrice,
+                            aboutMe,
+                            sessionInfo))
     }
-    console.log(firstName.trim())
-    updateUser.last_name = lastName;
-    updateUser.pronouns = pronouns;
-    dispatch(setUpdateUser(updateUser))
-  }, [firstName, lastName, pronouns])
-
-  const handleSubmit = () => {
-    
+    else {
+      dispatch(updateUserDb(user.id,
+                            firstName,
+                            lastName,
+                            pronouns,
+                            phoneNumber))
+    }
   }
 
   return (
@@ -103,7 +113,7 @@ const ProfileInformation = () => {
         </div>
         <div>
           <label>First Name: </label>
-          {!editFirstName && <span onClick={() => setEditFirstName(true)}>{user.first_name} <i className="fas fa-edit fa-xs"></i></span>}
+          {!editFirstName && <span onClick={() => setEditFirstName(true)}>{firstName} <i className="fas fa-edit fa-xs"></i></span>}
           {editFirstName && 
             <input
               id='input'
@@ -118,7 +128,7 @@ const ProfileInformation = () => {
         </div>
         <div>
           <label>Last Name: </label>
-          {!editLastName && <span onClick={() => setEditLastName(true)}>{user.last_name} <i className="fas fa-edit fa-xs"></i></span>}
+          {!editLastName && <span onClick={() => setEditLastName(true)}>{lastName} <i className="fas fa-edit fa-xs"></i></span>}
           {editLastName &&
             <input
               id='input'
@@ -132,7 +142,7 @@ const ProfileInformation = () => {
         </div>
         <div>
           <label>Pronouns: </label>
-          {!editPronouns && <span onClick={() => setEditPronouns(true)}>{user.pronouns} <i className="fas fa-edit fa-xs"></i></span>}
+          {!editPronouns && <span onClick={() => setEditPronouns(true)}>{pronouns} <i className="fas fa-edit fa-xs"></i></span>}
           {editPronouns &&
             <>
               <input

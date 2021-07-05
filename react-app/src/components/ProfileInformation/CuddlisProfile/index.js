@@ -15,7 +15,7 @@ const CuddlistProfile = ({context}) => {
     aboutMe, setAboutMe,
     sessionInfo, setSessionInfo} = context
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const user = useSelector(state => state.session.user);
   const updateUser = useSelector(state => state.session.updateUser);
@@ -35,34 +35,34 @@ const CuddlistProfile = ({context}) => {
   // const [sessionInfo, setSessionInfo] = useState(user.session_info);
 
   // Focus on input when it shows up
-  useEffect(() => {
-    const input = document.getElementById('input');
-    if (input) {
-      input.focus();
-    }
-  })
+  // useEffect(() => {
+  //   const input = document.getElementById('input');
+  //   if (input) {
+  //     input.focus();
+  //   }
+  // })
 
-  // Update store for each keystroke in each field 
-  useEffect(() => {
-    updateUser.session_price = sessionPrice;
-    updateUser.travel_price = travelPrice;
-    updateUser.location = location;
-    updateUser.about_me = aboutMe;
-    updateUser.session_info = sessionInfo;
-    dispatch(setUpdateUser(updateUser))
-  }, [sessionPrice, travelPrice, location, aboutMe, sessionInfo])
+  // // Update store for each keystroke in each field 
+  // useEffect(() => {
+  //   updateUser.session_price = sessionPrice;
+  //   updateUser.travel_price = travelPrice;
+  //   updateUser.location = location;
+  //   updateUser.about_me = aboutMe;
+  //   updateUser.session_info = sessionInfo;
+  //   dispatch(setUpdateUser(updateUser))
+  // }, [sessionPrice, travelPrice, location, aboutMe, sessionInfo])
 
 
   return (
     <>
       <div>
         <label>Session Price: </label>
-        {!editSessionPrice && <span onClick={() => setEditSessionPrice(true)}>{user.session_price} <i className="fas fa-edit fa-xs"></i></span>}
+        {!editSessionPrice && <span onClick={() => setEditSessionPrice(true)}>{sessionPrice} <i className="fas fa-edit fa-xs"></i></span>}
         {editSessionPrice &&
           <input
             id='input'
             autofocus
-            type='text'
+            type='number'
             name='sessionPriceUpdate'
             onChange={(e) => setSessionPrice(e.target.value)}
             value={sessionPrice}
@@ -72,11 +72,11 @@ const CuddlistProfile = ({context}) => {
       </div>
       <div>
         <label>Travel Price: </label>
-        {!editTravelPrice && <span onClick={() => setEditTravelPrice(true)}>{user.travel_price} <i className="fas fa-edit fa-xs"></i></span>}
+        {!editTravelPrice && <span onClick={() => setEditTravelPrice(true)}>{travelPrice} <i className="fas fa-edit fa-xs"></i></span>}
         {editTravelPrice &&
           <input
             id='input'
-            type='text'
+            type='number'
             name='sessionPriceUpdate'
             onChange={(e) => setTravelPrice(e.target.value)}
             value={travelPrice}
@@ -86,7 +86,7 @@ const CuddlistProfile = ({context}) => {
       </div>
       <div>
         <label>Location: </label>
-        {!editLocation && <span onClick={() => setEditLocation(true)}>{user.location} <i className="fas fa-edit fa-xs"></i></span>}
+        {!editLocation && <span onClick={() => setEditLocation(true)}>{location} <i className="fas fa-edit fa-xs"></i></span>}
         {editLocation &&
           <input
             id='input'
@@ -100,9 +100,9 @@ const CuddlistProfile = ({context}) => {
       </div>
       <div>
         <label>About Me: </label>
-        {!editAboutMe && <span onClick={() => setEditAboutMe(true)}>{user.about_me} <i className="fas fa-edit fa-xs"></i></span>}
+        {!editAboutMe && <span onClick={() => setEditAboutMe(true)}>{aboutMe} <i className="fas fa-edit fa-xs"></i></span>}
         {editAboutMe &&
-          <input
+          <textarea
             id='input'
             autofocus
             type='text'
@@ -110,12 +110,12 @@ const CuddlistProfile = ({context}) => {
             onChange={(e) => setAboutMe(e.target.value)}
             value={aboutMe}
             onBlur={() => setEditAboutMe(false)}
-          ></input>
+          ></textarea>
         }
       </div>
       <div>
         <label>Session Info: </label>
-        {!editSessionInfo && <span onClick={() => setEditSessionInfo(true)}>{user.session_info || 'click here to add session info'} <i className="fas fa-edit fa-xs"></i></span>}
+        {!editSessionInfo && <span onClick={() => setEditSessionInfo(true)}>{sessionInfo || 'click here to add session info'} <i className="fas fa-edit fa-xs"></i></span>}
         {editSessionInfo &&
           <input
             id='input'
