@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired
 
 
 class SessionRequestForm(FlaskForm):
-    
+    pass
