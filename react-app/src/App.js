@@ -39,7 +39,7 @@ function App() {
         <Route path="/" exact={true}>
           <Home />
         </Route>
-        <Route path="/search-results" exact={true}>
+        <Route path="/search-results/:location" exact={true}>
           <SearchResults />
         </Route>
         <Route path="/cuddlists/:id" exact={true}>

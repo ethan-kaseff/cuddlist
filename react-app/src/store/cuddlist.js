@@ -17,7 +17,7 @@ const setCuddlistLocations = (locations) => ({
 
 const setAvailableCuddlists = (cuddlists) => ({
   type: SET_AVAILABLE_CUDDLISTS,
-  paylaod: cuddlists
+  payload: cuddlists
 })
 
 
@@ -38,13 +38,12 @@ export const getAvailableCuddlists = (location) => async (dispatch) => {
   console.log('location', location)
   const response = await fetch(`/api/users/cuddlists/${location}`);
   const data = await response.json();
-  console.log('data', data);
-  dispatch(setAvailableCuddlists);
+  dispatch(setAvailableCuddlists(data));
 }
 
 
 // reducer 
-const initialState = {current:{}, locations: {}, availableCuddlits: {}}
+const initialState = {current:{}, locations: {}, availableCuddlists: {}}
 
 export default function reducer(state=initialState, action) {
   switch(action.type) {
@@ -53,7 +52,24 @@ export default function reducer(state=initialState, action) {
     case SET_CUDDLIST_LOCATIONS:
       return {...state, locations: action.payload}
     case SET_AVAILABLE_CUDDLISTS:
-      return {...state , availableCuddlits: action.payload}
+      // const newState = {...state}
+      // const cuddlists = action.payload.cuddlists
+      // for (const index in cuddlists) {
+      //   newState.availableCuddlists[cuddlists[index].id] = cuddlists[index]
+      // }
+      // // newState.availableCuddlists = action.payload
+      // return {...newState} // {...state , availableCuddlists: ...action.payload}
+      const availableCuddlists = {}
+      const cuddlists = action.payload.cuddlists
+      for (const index in cuddlists) {
+        availableCuddlists[cuddlists[index].id] = cuddlists[index]
+      }
+      // newState.availableCuddlists = action.payload
+      return { ...state, availableCuddlists } // {...state , availableCuddlists: ...action.payload}
+
+      // brand new try 
+      // return {...state, availableCuddlists: action.payload}
+
     default:
       return state
   }

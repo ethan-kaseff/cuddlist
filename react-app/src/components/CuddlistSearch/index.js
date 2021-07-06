@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom';
 import { getAvailableCuddlists, getCuddlistLocations } from '../../store/cuddlist'
 
 function CuddlistSearch() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const locations = useSelector(state => state.cuddlist.locations)
 
   const [location, setLocation] = useState('')
@@ -15,8 +17,8 @@ function CuddlistSearch() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('location in handleSubmit', location)
-    dispatch(getAvailableCuddlists(location))
+    // dispatch(getAvailableCuddlists(location))
+    history.push(`/search-results/${location}`);
   }
 
   return (
