@@ -18,7 +18,9 @@ function SearchResults() {
       {
         availableCuddlists.map((cuddlist) => {
           return (
-            <CuddlistCard cuddlist={cuddlist} />
+            <div key={cuddlist.id}>
+              <CuddlistCard cuddlist={cuddlist} />
+            </div>
           )
         })
       }
