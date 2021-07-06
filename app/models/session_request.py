@@ -2,7 +2,7 @@ from .db import db
 from sqlalchemy.dialects.postgresql import JSON
 
 
-class Session_Request(db.Model):
+class SessionRequest(db.Model):
     __tablename__ = 'session_requests'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -16,3 +16,11 @@ class Session_Request(db.Model):
     cuddler = db.relationship('Cuddlist', foreign_keys=[
                               cuddlist_id], backref='session_requests',
                               uselist=False)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "clientId": self.client_id,
+            "cuddlistId": self.cuddlist_id,
+            "form": self.form
+        }
