@@ -10,6 +10,7 @@ import UsersList from "./components/UsersList";
 import ProfileInformation from "./components/ProfileInformation";
 import User from "./components/User";
 import CuddlistProfile from "./components/CuddlistProfile";
+import SessionRequest from "./components/SessionRequest";
 
 import { authenticate } from "./store/session";
 

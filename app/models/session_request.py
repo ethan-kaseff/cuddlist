@@ -10,9 +10,9 @@ class Session_Request(db.Model):
     cuddlist_id = db.Column(db.Integer, db.ForeignKey('cuddlists.id'))
     form = db.Column(JSON, nullable=False)
 
-    # client = db.relationship('Client', foreign_keys=[
-    #                          client_id], backref='session_requests',
-    #                          uselist=False)
-    # cuddler = db.relationship('Cuddlist', foreign_keys=[
-    #                           cuddlist_id], backref='session_requests',
-    #                           uselist=False)
+    client = db.relationship('Client', foreign_keys=[
+                             client_id], backref='session_requests',
+                             uselist=False)
+    cuddler = db.relationship('Cuddlist', foreign_keys=[
+                              cuddlist_id], backref='session_requests',
+                              uselist=False)
