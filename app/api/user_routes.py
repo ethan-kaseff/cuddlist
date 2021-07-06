@@ -59,6 +59,9 @@ def cuddlistLocations():
     query = Cuddlist.query.with_entities(Cuddlist.location).distinct()
     locations = {row.location: row.location for row in query.all()
                  if row.location}
+    # locations = [row.location for row in query.all()
+    #              if row.location]
+    # return {'locations': locations}
     return locations
 
 
