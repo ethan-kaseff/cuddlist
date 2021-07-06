@@ -18,13 +18,15 @@ def seed_users():
                          first_name='jack',
                          last_name='shmap',
                          session_price=80,
-                         about_me='I am me and this is a big deal, you know that?')
+                         about_me='I am me and this is a big deal, \
+                            you know that?')
     cuddlist2 = Cuddlist(email='cuddlist2@cuddlist.com',
                          password='password',
                          first_name='brack',
                          last_name='smaptsy',
                          session_price=80,
-                         about_me='Here is the classi place to write about yourself!')
+                         about_me='Here is the classi place to write about \
+                            yourself!')
 
     db.session.add(client1)
     db.session.add(client2)
