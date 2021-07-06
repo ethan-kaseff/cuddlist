@@ -17,7 +17,7 @@ function SearchResults() {
 
   useEffect(() => {
     for (const key in availableCuddlists) {
-      console.log(key, 'penisface', availableCuddlists[key])
+      console.log(key, 'are they there?', availableCuddlists[key])
       availableCuddlistsArr.push(availableCuddlists[key]);
     }
 
@@ -34,16 +34,26 @@ function SearchResults() {
     console.log(typeof(availableCuddlistsArr))
   },[availableCuddlists, availableCuddlistsArr])
 
+  const joke = [
+    {
+      firstName: 'Ethan',
+    },
+    {
+      firstName: 'Jacob'
+    }
+  ]
 
   return (
     <div className='cuddlist__results__container'>
+      <p>hello? </p>
       {
-        availableCuddlistsArr.map( (cuddlist) => {
+        joke.map((cuddlist) => {
           return (
-            <>
+            <div className='card'>
               <p>something</p>
               {/* <CuddlistCard cuddlist={cuddlist} /> */}
-            </>
+              <p>{cuddlist.firstName}</p>
+            </div>
           )
         })
       }
