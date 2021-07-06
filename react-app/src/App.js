@@ -10,6 +10,8 @@ import UsersList from "./components/UsersList";
 import ProfileInformation from "./components/ProfileInformation";
 import User from "./components/User";
 import CuddlistProfile from "./components/CuddlistProfile";
+import Home from "./components/Home";
+import SearchResults from "./components/SearchResults";
 
 import { authenticate } from "./store/session";
 
@@ -34,6 +36,12 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path="/" exact={true}>
+          <Home />
+        </Route>
+        <Route path="/search-results/:location" exact={true}>
+          <SearchResults />
+        </Route>
         <Route path="/cuddlists/:id" exact={true}>
           <CuddlistProfile />
         </Route>
@@ -48,9 +56,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
         </ProtectedRoute>
         <ProtectedRoute>
           <Route path='/profile-page' exact={true}>
