@@ -67,9 +67,11 @@ def cuddlistLocations():
 
 @user_routes.route('/cuddlists/<string:location>')
 def availableCuddlists(location):
-    availableCuddlists = Cuddlist.query.filter(Cuddlist.location == location).all()
-    return {"cuddlists": [cuddlist.to_dict() for cuddlist in availableCuddlists]}
-    
+    availableCuddlists = Cuddlist.query.filter(Cuddlist.location == location) \
+                                               .all()
+    return {"cuddlists": [cuddlist.to_dict() for cuddlist
+                          in availableCuddlists]}
+
     # availableCuddlistsDict = {}
     # for cuddlist in availableCuddlists:
     #     availableCuddlists[cuddlist.id] = cuddlist.to_dict()
@@ -82,4 +84,3 @@ def availableCuddlists(location):
 def users():
     users = User.query.all()
     return {"users": [user.to_dict() for user in users]}
-
