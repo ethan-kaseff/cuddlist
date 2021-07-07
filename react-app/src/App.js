@@ -10,6 +10,7 @@ import UsersList from "./components/UsersList";
 import ProfileInformation from "./components/ProfileInformation";
 import User from "./components/User";
 import CuddlistProfile from "./components/CuddlistProfile";
+import SessionRequest from "./components/SessionRequest";
 import Home from "./components/Home";
 import SearchResults from "./components/SearchResults";
 
@@ -22,11 +23,11 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(authenticate());
+      dispatch(authenticate());
       setLoaded(true);
       // immediately invoking asynchronous function 
     })();
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;
@@ -51,6 +52,9 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path='/cuddlists/:cuddlistId/session-request'>
+          <SessionRequest />
+        </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList/>
         </ProtectedRoute>

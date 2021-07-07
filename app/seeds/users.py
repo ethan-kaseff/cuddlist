@@ -6,21 +6,27 @@ from app.models import db, Client, Cuddlist
 def seed_users():
 
     client1 = Client(email='client1@client.com',
-                    password='password',
-                    first_name='joe',
-                    last_name='shmoe')
+                     password='password',
+                     first_name='joe',
+                     last_name='shmoe')
     client2 = Client(email='client2@client.com',
-                    password='password',
-                    first_name='jane',
-                    last_name='woops')
+                     password='password',
+                     first_name='jane',
+                     last_name='woops')
     cuddlist1 = Cuddlist(email='cuddlist1@cuddlist.com',
-                    password='password',
-                    first_name='jack',
-                    last_name='shmap')
+                         password='password',
+                         first_name='jack',
+                         last_name='shmap',
+                         session_price=80,
+                         about_me='I am me and this is a big deal, \
+                            you know that?')
     cuddlist2 = Cuddlist(email='cuddlist2@cuddlist.com',
-                    password='password',
-                    first_name='brack',
-                    last_name='smaptsy')
+                         password='password',
+                         first_name='brack',
+                         last_name='smaptsy',
+                         session_price=80,
+                         about_me='Here is the classi place to write about \
+                            yourself!')
 
     db.session.add(client1)
     db.session.add(client2)
