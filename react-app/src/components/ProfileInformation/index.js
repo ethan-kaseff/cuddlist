@@ -8,7 +8,6 @@ const ProfileInformation = () => {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.session.user);
-  const updateUser = useSelector(state => state.session.updateUser);;
 
   // useEffect(() => {
   //    updateUser = useSelector(state => state.session.updateUser);
@@ -72,11 +71,11 @@ const ProfileInformation = () => {
   })
 
   // Update store for each keystroke in each field 
-  const validate = (string) => {
-    if (!firstName.length == 0 && firstName.trim()) {
-      updateUser.first_name = firstName;
-    }
-  }
+  // const validate = (string) => {
+  //   if (!firstName.length == 0 && firstName.trim()) {
+  //     updateUser.first_name = firstName;
+  //   }
+  // }
 
 
 

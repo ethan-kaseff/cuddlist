@@ -11,7 +11,7 @@ function SearchResults() {
 
   useEffect(() =>  {
     dispatch(getAvailableCuddlists(location));
-  },[dispatch])
+  },[dispatch, location])
 
   return (
     <div className='cuddlist__results__container'>

@@ -23,11 +23,11 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(authenticate());
+      dispatch(authenticate());
       setLoaded(true);
       // immediately invoking asynchronous function 
     })();
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;

@@ -17,7 +17,8 @@ const SignUpForm = () => {
     e.preventDefault();
     console.log(firstName, lastName, email, '......._____________________________')
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(email, password, firstName, lastName, cuddlist));
+      // const data = await 
+      dispatch(signUp(email, password, firstName, lastName, cuddlist));
       // could set errors later 
     }
   };

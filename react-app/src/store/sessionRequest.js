@@ -28,6 +28,7 @@ export const createSessionRequest = (
       questions,
     }),
   });
-  const data = await response.json()
+  // const data = 
+  await response.json()
   // dispatch(setSomethingSomehow(data))
 }

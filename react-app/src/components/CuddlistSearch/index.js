@@ -11,7 +11,7 @@ function CuddlistSearch() {
 
   useEffect(() => {
     dispatch(getCuddlistLocations())
-  }, [])
+  }, [dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ function CuddlistSearch() {
             <option default>Pick a Location...</option>
           {
             Object.keys(locations).map( location => {
-              return <option value={location}>{location}</option>
+              return <option key={location} value={location}>{location}</option>
             })
           }
         </select>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getCuddlist } from "../../store/cuddlist";
@@ -11,7 +11,7 @@ const CuddlistProfile = () => {
   useEffect(() => {
     const data = dispatch(getCuddlist(id))
     console.log(data)
-  }, [dispatch])
+  }, [dispatch, id])
 
   return (
     <>
