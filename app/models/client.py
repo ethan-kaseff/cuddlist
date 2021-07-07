@@ -17,5 +17,6 @@ class Client(User):
             "firstName": self.first_name,
             "lastName": self.last_name,
             "pronouns": self.pronouns,
-            # "sessionRequests": [session_request.to_dict() for session_request in self.session_requests]
+            "sessionRequests": [session_request.to_dict() for
+                                session_request in self.session_requests]
         }

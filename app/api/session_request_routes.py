@@ -30,17 +30,3 @@ def createSessionRequest():
     db.session.commit()
 
     return request.to_dict()
-
-
-@session_request_routes.route('/<int:id>')
-def getSessionRequestsByClientId(id):
-    user = User.query.get(id)
-    
-    if user.type == 'cuddlists':
-        client_cuddlist = Cuddlist.query.get(id)
-
-    if user.type == 'clients':
-        client_cuddlist = Client.query.get(id)
-
-    return {"requestSessions": [session.to_dict() for session in
-                                client_cuddlist.session_requests]}

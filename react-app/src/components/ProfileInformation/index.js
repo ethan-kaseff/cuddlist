@@ -161,7 +161,7 @@ const ProfileInformation = () => {
         <button type='submit'>Save</button>
       </form>
       <div>
-        <p>{user.sessionRequests}</p>
+        <p>{JSON.stringify(user.sessionRequests)}</p>
       </div>
     </>
   )
