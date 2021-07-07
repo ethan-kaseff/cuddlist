@@ -9,8 +9,8 @@ user_routes = Blueprint('users', __name__)
 
 @user_routes.route('/<int:id>')
 def getProfile(id):
-    user = User.query.get(id)
-
+    user = current_user
+    
     if user.type == "cuddlists":
         cuddlist = Cuddlist.query.get(id)
         return cuddlist.to_dict()

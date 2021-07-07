@@ -1,6 +1,6 @@
 // constants
 
-
+// action creators
 
 // thunks 
 
@@ -31,4 +31,16 @@ export const createSessionRequest = (
   // const data = 
   await response.json()
   // dispatch(setSomethingSomehow(data))
+}
+
+
+// reducer 
+
+const initialState = {sessionRequests: {}}
+
+export default function reducer(state=initialState, action) {
+  switch(action.type) {
+    default:
+      return state
+  }
 }

@@ -160,6 +160,9 @@ const ProfileInformation = () => {
         {!user.session_price && <ClientInfo context={clientContext}/>}
         <button type='submit'>Save</button>
       </form>
+      <div>
+        <p>{JSON.stringify(user.sessionRequests)}</p>
+      </div>
     </>
   )
 }

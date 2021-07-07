@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
+from flask.globals import session
 from flask_login import login_required, current_user
-from app.models import db, SessionRequest
+from app.models import db, SessionRequest, Client, Cuddlist, User
 from app.forms import SessionRequestForm
 
 session_request_routes = Blueprint('requests', __name__)
