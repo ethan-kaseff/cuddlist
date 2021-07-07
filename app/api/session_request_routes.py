@@ -6,7 +6,7 @@ from app.forms import SessionRequestForm
 session_request_routes = Blueprint('requests', __name__)
 
 
-@session_request_routes.route('/create-session-request', methods=['POST'])
+@session_request_routes.route('/create', methods=['POST'])
 def createSessionRequest():
     print('------------------made it into the route-------------')
     form = SessionRequestForm()

@@ -52,7 +52,7 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/cuddlists/:id/session-request'>
+        <ProtectedRoute path='/cuddlists/:cuddlistId/session-request'>
           <SessionRequest />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true}>
