@@ -10,7 +10,7 @@ const NavBar = () => {
       <ul>
         <li>
           <NavLink to="/" exact={true} activeClassName="active">
-            Home
+            <img src="/cuddlistlogo2.png" alt='something'></img>
           </NavLink>
         </li>
         <li>
