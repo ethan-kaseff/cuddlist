@@ -163,7 +163,10 @@ const ProfileInformation = () => {
         <button type='submit'>Save</button>
       </form>
       <div>
+        <h1>Session Requests</h1>
         <p>{JSON.stringify(user.sessionRequests)}</p>
+        <h1>Chat Rooms</h1>
+        <p>{JSON.stringify(user.chatRooms)}</p>
       </div>
     </>
   )

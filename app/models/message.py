@@ -23,5 +23,5 @@ class Message(db.Model):
             'chatRoomId': self.chat_room_id,
             'content': self.content,
             'time': self.time,
-            'chatRoom': self.chat_room
+            # 'chatRoom': self.chat_room
         }
