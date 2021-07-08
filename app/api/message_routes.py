@@ -3,30 +3,23 @@ from flask.globals import session
 from flask.signals import message_flashed
 from flask_login import login_required, current_user
 from app.models import db, SessionRequest, Client, Cuddlist, User
-from app.forms import SessionRequestForm
+from app.forms import MessageForm
 
 message_routes = Blueprint('messages', __name__)
 
 
 @message_routes.route('/create', methods=['POST'])
 def createMessage():
-    form = SessionRequestForm()
+    form = MessageForm()
 
-    form_response = {
-        "session_length": form.data['session_length'],
-        "session_date": form.data['session_date'],
-        "why_session": form.data['why_session'],
-        "get_out_of_it": form.data['get_out_of_it'],
-        "questions": form.data['questions']
-    }
-
-    request = SessionRequest(
-        client_id=form.data['client_id'],
-        cuddlist_id=form.data['cuddlist_id'],
-        form=form_response
+    message = SessionRequest(
+        sender_id=form.data['sender_id'],
+        chat_room_id=form.data['chat_room_id'],
+        content=form.data['content'],
+        time=form.data['time']
     )
 
-    db.session.add(request)
+    db.session.add(message)
     db.session.commit()
 
-    return request.to_dict()
+    return message.to_dict()
