@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import logo from './images/cuddlistlogo2.png';
 
 import './NavBar.css'
 
@@ -9,7 +10,7 @@ const NavBar = () => {
     <nav>
       <div>
         <NavLink to="/" exact={true} activeClassName="active">
-          <img src="/images/cuddlistlogo2.png" alt='something'></img>
+          <img src={logo} alt='something'></img>
         </NavLink>
       </div>
       <ul>
