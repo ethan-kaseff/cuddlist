@@ -1,14 +1,15 @@
 from flask import Blueprint, jsonify, request
 from flask.globals import session
+from flask.signals import message_flashed
 from flask_login import login_required, current_user
 from app.models import db, SessionRequest, Client, Cuddlist, User
 from app.forms import SessionRequestForm
 
-session_request_routes = Blueprint('requests', __name__)
+message_routes = Blueprint('messages', __name__)
 
 
-@session_request_routes.route('/create', methods=['POST'])
-def createSessionRequest():
+@message_routes.route('/create', methods=['POST'])
+def createMessage():
     form = SessionRequestForm()
 
     form_response = {

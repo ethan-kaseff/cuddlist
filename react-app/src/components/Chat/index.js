@@ -13,9 +13,14 @@ const Chat = () => {
     // create websocket
     socket = io();
 
-    socket.on("chat", (chat) => {
-      setMessages(messages => [...messages, chat])
-    })
+    // socket.on("chat", (chat) => {
+    //   setMessages(messages => [...messages, chat])
+    // })
+
+    socket.on('connection', socket => {
+      socket.join('some room');
+    });
+
     // when component unmounts, disconnect
     return (() => {
       socket.disconnect()
@@ -28,7 +33,8 @@ const Chat = () => {
 
   const sendChat = (e) => {
     e.preventDefault()
-    socket.emit("chat", { user: user.firstName, msg: chatInput });
+    // socket.emit("chat", { user: user.firstName, msg: chatInput });
+    io.to('some room').emit("chat", { user: user.firstName, msg: chatInput, room: 'some room' });
     setChatInput("")
   }
 
