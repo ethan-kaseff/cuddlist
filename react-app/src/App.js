@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      dispatch(authenticate());
+      await dispatch(authenticate());
       setLoaded(true);
       // immediately invoking asynchronous function 
     })();
@@ -56,19 +56,17 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/cuddlists/:cuddlistId/session-request' exact={true}>
+        <ProtectedRoute path='/cuddlists/:cuddlistId/session-request' exact={true}>
           <SessionRequest />
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute>
-          <Route path='/profile-page' exact={true}>
-            <ProfileInformation />
-          </Route>
+        <ProtectedRoute path='/profile-page' exact={true}>
+          <ProfileInformation />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
