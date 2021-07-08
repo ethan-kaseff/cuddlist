@@ -68,6 +68,7 @@ const ProfileInformation = () => {
     if (input) {
       input.focus();
     }
+    console.log()
   })
 
   // Update store for each keystroke in each field 
@@ -82,24 +83,26 @@ const ProfileInformation = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('in the handle funciton ')
-    if (user.session_price) {
-      dispatch(updateUserDb(user.id,
-                            firstName, 
-                            lastName, 
-                            pronouns, 
-                            location, 
-                            sessionPrice, 
-                            travelPrice,
-                            aboutMe,
-                            sessionInfo))
+    let userToSend = {}
+    if (user.sessionPrice) {
+      userToSend = {id: user.id,
+              firstName, 
+              lastName, 
+              pronouns, 
+              location, 
+              sessionPrice, 
+              travelPrice,
+              aboutMe,
+              sessionInfo}
     }
     else {
-      dispatch(updateUserDb(user.id,
-                            firstName,
-                            lastName,
-                            pronouns,
-                            phoneNumber))
+      userToSend = {id: user.id,
+              firstName,
+              lastName,
+              pronouns,
+              phoneNumber}
     }
+    dispatch(updateUserDb(userToSend))
   }
 
   return (
@@ -116,7 +119,6 @@ const ProfileInformation = () => {
           {editFirstName && 
             <input
               id='input'
-              autofocus
               type='text'
               name='firstNameUpdate'
               onChange={(e) => setFirstName(e.target.value)}
@@ -156,12 +158,15 @@ const ProfileInformation = () => {
             </>
           }
         </div>
-        {user.session_price && <CuddlistInfo context={cuddlistContext}/>}
-        {!user.session_price && <ClientInfo context={clientContext}/>}
+        {user.sessionPrice && <CuddlistInfo context={cuddlistContext}/>}
+        {!user.sessionPrice && <ClientInfo context={clientContext}/>}
         <button type='submit'>Save</button>
       </form>
       <div>
+        <h1>Session Requests</h1>
         <p>{JSON.stringify(user.sessionRequests)}</p>
+        <h1>Chat Rooms</h1>
+        <p>{JSON.stringify(user.chatRooms)}</p>
       </div>
     </>
   )

@@ -5,7 +5,7 @@ const Home = () => {
   
   return (
     <>
-      <h1>Home Page Bitch</h1>
+      <h1>Welcome to the Cuddlist Home Page</h1>
       <CuddlistSearch />
     </>
   )

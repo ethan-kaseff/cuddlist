@@ -13,6 +13,7 @@ import CuddlistProfile from "./components/CuddlistProfile";
 import SessionRequest from "./components/SessionRequest";
 import Home from "./components/Home";
 import SearchResults from "./components/SearchResults";
+import Chat from "./components/Chat";
 
 import { authenticate } from "./store/session";
 
@@ -37,6 +38,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/chat' exact={true}>
+          <Chat />
+        </Route>
         <Route path="/" exact={true}>
           <Home />
         </Route>
@@ -52,9 +56,9 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/cuddlists/:cuddlistId/session-request'>
+        <Route path='/cuddlists/:cuddlistId/session-request' exact={true}>
           <SessionRequest />
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList/>
         </ProtectedRoute>

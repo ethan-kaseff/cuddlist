@@ -59,7 +59,6 @@ const CuddlistInfo = ({context}) => {
         {editSessionPrice &&
           <input
             id='input'
-            autofocus
             type='number'
             name='sessionPriceUpdate'
             onChange={(e) => setSessionPrice(e.target.value)}

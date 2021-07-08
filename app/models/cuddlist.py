@@ -25,4 +25,8 @@ class Cuddlist(User):
             "sessionInfo": self.session_info,
             "location": self.location,
             "email": self.email,
+            "sessionRequests": [session_request.to_dict() for
+                                session_request in self.session_requests],
+            "chatRooms": [chat_room.to_dict() for
+                          chat_room in self.chat_rooms],
         }

@@ -20,7 +20,6 @@ const ClientInfo = ({context}) => {
         {editPhoneNumber &&
           <input
             id='input'
-            autofocus
             type='text'
             name='phoneNumberUpdate'
             onChange={(e) => setPhoneNumber(e.target.value)}
