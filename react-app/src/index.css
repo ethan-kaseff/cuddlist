@@ -1,5 +1,18 @@
 /* TODO Add site wide styles */
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply box-border;
+    }
+    *, *:before, *:after {
+        @apply box-border;
+    }
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
