@@ -9,13 +9,16 @@ user_routes = Blueprint('users', __name__)
 
 @user_routes.route('/<int:id>')
 def getProfile(id):
-    user = current_user
+    user = User.query.get(id)
+    print(user)
+    print('thats the user')
     
     if user.type == "cuddlists":
         cuddlist = Cuddlist.query.get(id)
         return cuddlist.to_dict()
     else:
         client = Client.query.get(id)
+        print(client)
         return client.to_dict()
 
 
@@ -25,6 +28,7 @@ def updateUsers(id):
     user = User.query.get(id)
 
     if user.type == 'cuddlists':
+        print('-----------------------printing client_cuddlist in route------------------')
         form = UserForm()
         client_cuddlist = Cuddlist.query.get(id)
         print(client_cuddlist)

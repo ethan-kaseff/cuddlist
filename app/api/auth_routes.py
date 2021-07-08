@@ -73,6 +73,10 @@ def sign_up():
                 last_name=form.data['last_name'],
                 pronouns='',
                 session_price=80,
+                travel_price=0,
+                location='',
+                about_me='',
+                session_info='',
             )
         else:
             user = Client(
@@ -81,6 +85,7 @@ def sign_up():
                 first_name=form.data['first_name'],
                 last_name=form.data['last_name'],
                 pronouns='',
+                phone_number=''
             )
         db.session.add(user)
         db.session.commit()

@@ -74,30 +74,59 @@ export const signUp = (email, password, firstName, lastName, cuddlist) => async 
     dispatch(setUser(data))
 }
 
-export const updateUserDb =(id,
-                            firstName, 
-                            lastName, 
-                            pronouns, 
-                            location, 
-                            sessionPrice, 
-                            travelPrice, 
-                            aboutMe, 
-                            sessionInfo) =>async (dispatch) => {
+export const updateUserDb =(user) =>async (dispatch) => {
+    console.log('userrrrrrrrrr', user)
+    const {
+        id,
+        firstName,
+        lastName,
+        pronouns,
+    } = user
+    let jsonData = {}
+    if (user.sessionPrice) {
+        const {
+            location,
+            sessionPrice,
+            travelPrice,
+            aboutMe,
+            sessionInfo
+        } = user 
+        jsonData = JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            pronouns: pronouns ? pronouns : '',
+            location: location ? location : '',
+            session_price: sessionPrice ? sessionPrice : 80,
+            travel_price: travelPrice ? travelPrice : 0,
+            about_me: aboutMe ? aboutMe : '',
+            session_info: sessionInfo ? sessionInfo : ''
+        })
+    } else {
+        const { phoneNumber} = user 
+        jsonData = JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            pronouns: pronouns ? pronouns : '',
+            phone_number: phoneNumber ? phoneNumber: ''
+        })
+    }
     const response = await fetch(`/api/users/${id}/`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-            first_name: firstName,
-            last_name: lastName,
-            location,
-            pronouns,
-            session_price: sessionPrice,
-            travel_price: travelPrice,
-            about_me: aboutMe,
-            session_info: sessionInfo
-        }),
+        body: jsonData
+        // JSON.stringify({
+        //     first_name: firstName,
+        //     last_name: lastName,
+        //     pronouns: pronouns ? pronouns : '',
+        //     location: location ? location : '',
+        //     session_price: sessionPrice,
+        //     travel_price: travelPrice ? travelPrice : 0,
+        //     about_me: aboutMe ? aboutMe : '',
+        //     session_info: sessionInfo ? sessionInfo : '',
+        //     phone_number: phoneNumber ? phoneNumber : ''
+        // }),
     });
 
     const data = await response.json();
