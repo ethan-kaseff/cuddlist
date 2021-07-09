@@ -29,8 +29,8 @@ const NavBar = () => {
         </li> */}
         {user &&
         <li>
-          <NavLink to="/profile-page" exact={true} activeClassName="active">
-            Profile Page
+          <NavLink to="/my-dashboard" exact={true} activeClassName="active">
+            Dashboard
           </NavLink>
         </li>
         }

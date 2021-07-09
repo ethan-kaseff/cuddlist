@@ -7,7 +7,8 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
-import ProfileInformation from "./components/ProfileInformation";
+// import ProfileInformation from "./components/ProfileInformation";
+import MyDashboard from "./components/MyDashboard";
 import User from "./components/User";
 import CuddlistProfile from "./components/CuddlistProfile";
 import SessionRequest from "./components/SessionRequest";
@@ -64,6 +65,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path="/my-dashboard" exact={true}>
+          <MyDashboard />
         </ProtectedRoute>
         {/* <ProtectedRoute path='/profile-page' exact={true}>
           <ProfileInformation />

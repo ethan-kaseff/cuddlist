@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import CuddlistInfo from "./CuddlistInfo";
 import ClientInfo from "./ClientInfo";
-import {updateUserDb} from '../../store/session'
+import {updateUserDb} from '../../../store/session'
 
 const ProfileInformation = () => {
   const dispatch = useDispatch();
