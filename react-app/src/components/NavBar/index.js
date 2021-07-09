@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {useSelector} from 'react-redux'
 import LogoutButton from '../auth/LogoutButton';
+import logo from './images/cuddlistlogo2.png';
 
 
 const NavBar = () => {
@@ -11,7 +12,7 @@ const NavBar = () => {
     <nav className='flex justify-between item-center shadow-sm p-2'>
       <div>
         <NavLink to="/" exact={true} activeClassName="active">
-          <img src="/images/cuddlistlogo2.png" alt='something'></img>
+          <img src={logo} alt='something'></img>
         </NavLink>
       </div>
       <div className='w-1/4'>
