@@ -5,4 +5,4 @@ from wtforms.validators import DataRequired
 
 class ImageForm(FlaskForm):
     cuddlist_id = IntegerField('cuddlist id', validators=[DataRequired()])
-    url = StringField('url', validators=[DataRequired()])
+    image_url = StringField('image url', validators=[DataRequired()])

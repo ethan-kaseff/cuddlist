@@ -7,7 +7,7 @@ class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     cuddlist_id = db.Column(db.Integer, db.ForeignKey('cuddlists.id'),
                             nullable=False)
-    url = db.Column(db.String, nullable=False)
+    image_url = db.Column(db.String, nullable=False)
 
     cuddlist = db.relationship('Cuddlist', foreign_keys=[cuddlist_id], backref='images', uselist=False)
 
@@ -15,5 +15,5 @@ class Image(db.Model):
         return {
             'id': self.id,
             'cuddlistId': self.cuddlist_id,
-            'url': self.url
+            'imageUrl': self.image_url
         }

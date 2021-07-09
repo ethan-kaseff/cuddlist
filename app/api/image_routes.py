@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, SessionRequest, Client, Cuddlist, User
+from app.models import db, Image
 from app.forms import ImageForm
 
 image_routes = Blueprint('images', __name__)
@@ -10,9 +10,9 @@ image_routes = Blueprint('images', __name__)
 def createMessage():
     form = ImageForm()
 
-    image = SessionRequest(
-        client_id=form.data['client_id'],
-        url=form.data['url'],
+    image = Image(
+        cuddlist_id=form.data['cuddlist_id'],
+        image_url=form.data['image_url'],
     )
 
     db.session.add(image)
