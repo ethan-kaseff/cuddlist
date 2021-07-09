@@ -19,7 +19,7 @@ function MyDashboard() {
   return (
     <div className='flex flex-col items-center'>
         <h1
-        className='text-blue-300 font-bold text-3xl'
+        className='text-blue-300 font-bold text-3xl pt-4'
         >Hi {user.firstName + ','}</h1>
         <div className="flex justify-center m-8">
           <div className="w-full flex">
@@ -86,7 +86,7 @@ function MyDashboard() {
               </li> */}
             </ul>
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-              <div className="px-4 py-5 flex-auto">
+              <div className="px-4 py-5 flex-auto shadow-inner">
                 <div className="tab-content tab-space">
                   <div className={openTab === 1 ? "block" : "hidden"} id="link1">
                     <ProfileInformation />

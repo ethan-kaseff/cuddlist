@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import {useSelector} from 'react-redux'
 import LogoutButton from '../auth/LogoutButton';
 import logo from '../../images/cuddlistlogo2.png';
+import LoginFormModal from '../auth/loginFormModal';
 
 
 const NavBar = () => {
@@ -36,9 +37,10 @@ const NavBar = () => {
         }
         {!user &&
         <li className='hover:bg-blue-200 p-2 items-center rounded-xl flex'>
-          <NavLink to="/login" exact={true} activeClassName="active">
+          {/* <NavLink to="/login" exact={true} activeClassName="active">
             Login
-          </NavLink>
+          </NavLink> */}
+          <LoginFormModal />
         </li>
         }
         {!user &&
