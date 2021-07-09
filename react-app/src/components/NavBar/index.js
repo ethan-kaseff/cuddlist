@@ -6,15 +6,16 @@ import './NavBar.css'
 
 const NavBar = () => {
   return (
-    <nav>
+    <nav className='flex justify-between item-center shadow-sm p-2'>
       <div>
         <NavLink to="/" exact={true} activeClassName="active">
           <img src="/images/cuddlistlogo2.png" alt='something'></img>
         </NavLink>
       </div>
-      <ul>
-        <li>
-        </li>
+      <div className='flex justify-center items-center pr-4 md:hidden'>
+        <i class="fas fa-bars fa-lg"></i>
+      </div>
+      <ul className='md:flex justify-between items-center w-4/5 list-none pr-4 hidden'>
         <li>
           <NavLink to="/chat" exact={true} activeClassName="active">
             Chat
