@@ -22,7 +22,14 @@ class SessionRequest(db.Model):
             "id": self.id,
             "clientId": self.client_id,
             "cuddlistId": self.cuddlist_id,
-            "form": self.form,
+            # "form": self.form,
+            "form": {
+                "sessionLength": self.form['session_length'],
+                "sessionDate": self.form["session_date"],
+                "whySession": self.form['why_session'],
+                "getOutOfIt": self.form['get_out_of_it'],
+                "questions": self.form['questions']
+            },
             "client": self.client.to_dict_for_session_request(),
             "cuddler": self.cuddler.to_dict_for_session_request()
         }

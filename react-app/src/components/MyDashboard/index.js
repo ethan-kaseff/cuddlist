@@ -93,7 +93,7 @@ function MyDashboard() {
                   </div>
                   <div className={openTab === 2 ? "block" : "hidden"} id="link2">
                     <div>
-                      <h1>Session Requests</h1>
+                    <h1 className='text-center text-blue-500 mb-5 font-bold text-xl'>Session Requests</h1>
                       {
                         requests.map(request => {
                           return (
