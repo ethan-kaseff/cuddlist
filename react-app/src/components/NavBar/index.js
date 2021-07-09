@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import {useSelector} from 'react-redux'
 import LogoutButton from '../auth/LogoutButton';
 
-import './NavBar.css'
 
 const NavBar = () => {
+  const user = useSelector(state => state.session.user)
+
   return (
     <nav className='flex justify-between item-center shadow-sm p-2'>
       <div>
@@ -12,10 +14,13 @@ const NavBar = () => {
           <img src="/images/cuddlistlogo2.png" alt='something'></img>
         </NavLink>
       </div>
+      <div className='w-1/4'>
+
+      </div>
       <div className='flex justify-center items-center pr-4 md:hidden'>
         <i class="fas fa-bars fa-lg"></i>
       </div>
-      <ul className='md:flex justify-between items-center w-4/5 list-none pr-4 hidden'>
+      <ul className='md:flex justify-between items-center w-4/5 list-none pl-8 pr-4 hidden max-w-2xl'>
         <li>
           <NavLink to="/chat" exact={true} activeClassName="active">
             Chat
@@ -41,9 +46,11 @@ const NavBar = () => {
             Profile Page
           </NavLink>
         </li>
+        {user &&
         <li>
           <LogoutButton />
         </li>
+}
       </ul>
     </nav>
   );
