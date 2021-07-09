@@ -98,7 +98,7 @@ const ProfileInformation = () => {
     e.preventDefault()
     console.log('in the handle funciton ')
     let userToSend = {}
-    if (user.sessionPrice) {
+    if (user.type == 'cuddlists') {
       userToSend = {id: user.id,
               firstName, 
               lastName, 
@@ -197,8 +197,8 @@ const ProfileInformation = () => {
         </table>
         
         
-        {user.sessionPrice && <CuddlistInfo context={cuddlistContext}/>}
-        {!user.sessionPrice && <ClientInfo context={clientContext}/>}
+        {user.type == 'cuddlists' && <CuddlistInfo context={cuddlistContext}/>}
+        {user.type == 'clients' && <ClientInfo context={clientContext}/>}
         <div className='flex justify-center m-4'>
           <button 
           className={buttonColor + ' rounded-full shadow-lg text-white font-bold w-2/5 p-1 text-lg m-1'}
