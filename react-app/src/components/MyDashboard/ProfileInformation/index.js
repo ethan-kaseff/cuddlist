@@ -13,7 +13,7 @@ const ProfileInformation = () => {
   //    updateUser = useSelector(state => state.session.updateUser);
   // })
 
-  const error = { firstName: 'bad first name'}
+  const error = { }
 
   // Boolean values to track what we are editing
   // User
@@ -33,7 +33,7 @@ const ProfileInformation = () => {
   // User
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [pronouns, setPronouns] = useState(user.pronouns);
+  const [pronouns, setPronouns] = useState(user.pronouns ? user.pronouns : 'Pronouns');
   // Cuddlist
   const [sessionPrice, setSessionPrice] = useState(user.sessionPrice);
   const [travelPrice, setTravelPrice] = useState(user.travelPrice);
@@ -60,6 +60,20 @@ const ProfileInformation = () => {
     editPhoneNumber, setEditPhoneNumber,
     phoneNumber, setPhoneNumber
   }
+
+  const [buttonColor, setButtonColor] = useState('bg-gray-500')
+  useEffect(() => {
+    setButtonColor('bg-blue-700 hover:bg-blue-500')
+  },[editFirstName,
+     editLastName,
+     editPronouns,
+     editLocation,
+     editTravelPrice,
+     editSessionInfo,
+     editSessionPrice,
+     editAboutMe,
+     editSessionInfo,
+     editPhoneNumber])
 
 
   // Focus on input when it shows up
@@ -107,67 +121,91 @@ const ProfileInformation = () => {
 
   return (
     <>
+      <div>
+        {
+          error.firstName
+        }
+      </div>
       <form onSubmit={handleSubmit}>
-        <div>
-          {
-            error.firstName
-          }
-        </div>
-        <div>
-          <label>First Name: </label>
-          {!editFirstName && <span onClick={() => setEditFirstName(true)}>{firstName} <i className="fas fa-edit fa-xs"></i></span>}
-          {editFirstName && 
-            <input
-              id='input'
-              type='text'
-              name='firstNameUpdate'
-              onChange={(e) => setFirstName(e.target.value)}
-              value={firstName}
-              onBlur={() => setEditFirstName(false)}
-            ></input>
-          }
-        </div>
-        <div>
-          <label>Last Name: </label>
-          {!editLastName && <span onClick={() => setEditLastName(true)}>{lastName} <i className="fas fa-edit fa-xs"></i></span>}
-          {editLastName &&
-            <input
-              id='input'
-              type='text'
-              name='lastNameUpdate'
-              onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
-              onBlur={() => setEditLastName(false)}
-            ></input>
-          }
-        </div>
-        <div>
-          <label>Pronouns: </label>
-          {!editPronouns && <span onClick={() => setEditPronouns(true)}>{pronouns} <i className="fas fa-edit fa-xs"></i></span>}
-          {editPronouns &&
-            <>
-              <input
-                id='input'
-                type='text'
-                name='pronounsUpdate'
-                onChange={(e) => setPronouns(e.target.value)}
-                value={pronouns}
-                onBlur={() => setEditPronouns(false)}
-              ></input>
-              <i className="fas fa-sync-alt"></i>
-            </>
-          }
-        </div>
+        <table className='table-fixed'>
+          <tbody>
+
+            <tr>
+              <td className='w-1/4'>First Name</td>
+              <td className='w-2/4'>
+                <div>
+                  {!editFirstName && <span onClick={() => setEditFirstName(true)}>{firstName} <i className="fas fa-edit fa-xs"></i></span>}
+                  {editFirstName &&
+                    <input
+                      id='input'
+                      type='text'
+                      name='firstNameUpdate'
+                      onChange={(e) => setFirstName(e.target.value)}
+                      value={firstName}
+                      placeholder='First Name'
+                      onBlur={() => setEditFirstName(false)}
+                    ></input>
+                  }
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Last Name</td>
+              <td>
+                <div>
+                  {!editLastName && <span onClick={() => setEditLastName(true)}>{lastName} <i className="fas fa-edit fa-xs"></i></span>}
+                  {editLastName &&
+                    <input
+                      id='input'
+                      type='text'
+                      name='lastNameUpdate'
+                      onChange={(e) => setLastName(e.target.value)}
+                      value={lastName}
+                      placeholder='Last Name'
+                      onBlur={() => setEditLastName(false)}
+                    ></input>
+                  }
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Pronouns</td>
+              <td>
+                <div>
+                  {!editPronouns && <span onClick={() => setEditPronouns(true)}>{pronouns} <i className="fas fa-edit fa-xs"></i></span>}
+                  {editPronouns &&
+                    <>
+                      <input
+                        id='input'
+                        type='text'
+                        name='pronounsUpdate'
+                        onChange={(e) => setPronouns(e.target.value)}
+                        value={pronouns}
+                        placeholder='Pronouns'
+                        onBlur={() => setEditPronouns(false)}
+                      ></input>
+                      <i className="fas fa-sync-alt"></i>
+                    </>
+                  }
+                </div>
+              </td>
+            </tr>
+            <tr>
+
+            </tr>
+          </tbody>
+        </table>
+        
+        
         {user.sessionPrice && <CuddlistInfo context={cuddlistContext}/>}
         {!user.sessionPrice && <ClientInfo context={clientContext}/>}
-        <button type='submit'>Save</button>
+        <div className='flex justify-center m-4'>
+          <button 
+          className={buttonColor + ' rounded-full shadow-lg text-white font-bold w-2/5 p-1 text-lg m-1'}
+          type='submit'>Save</button>
+        </div>
       </form>
-      <div>
-        <h1>Session Requests</h1>
-        <p>{JSON.stringify(user.sessionRequests)}</p>
-        <h1>Chat Rooms</h1>
-        <p>{JSON.stringify(user.chatRooms)}</p>
-      </div>
+      
     </>
   )
 }

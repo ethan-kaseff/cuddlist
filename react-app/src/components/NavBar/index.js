@@ -15,34 +15,34 @@ const NavBar = () => {
           <img src={logo} alt='something'></img>
         </NavLink>
       </div>
-      <div className='w-1/4'>
+      {/* <div className='w-1/4'>
 
-      </div>
+      </div> */}
       <div className='flex justify-center items-center pr-4 md:hidden'>
         <i className="fas fa-bars fa-lg"></i>
       </div>
-      <ul className='md:flex justify-between items-center w-1/5 list-none pl-8 pr-4 hidden max-w-2xl min-w-md'>
+      <ul className='md:flex justify-between items-center w-3/8 list-none pl-8 pr-4 hidden max-w-3xl min-w-md'>
         {/* <li>
           <NavLink to="/chat" exact={true} activeClassName="active">
             Chat
           </NavLink>
         </li> */}
         {user &&
-        <li>
+        <li className='hover:bg-blue-200 p-2 items-center rounded-xl flex'>
           <NavLink to="/my-dashboard" exact={true} activeClassName="active">
             Dashboard
           </NavLink>
         </li>
         }
         {!user &&
-        <li>
+        <li className='hover:bg-blue-200 p-2 items-center rounded-xl flex'>
           <NavLink to="/login" exact={true} activeClassName="active">
             Login
           </NavLink>
         </li>
         }
         {!user &&
-        <li>
+        <li className='hover:bg-blue-200 p-2 items-center rounded-xl flex min-w-min'>
           <NavLink to="/sign-up" exact={true} activeClassName="active">
             Sign Up
           </NavLink>

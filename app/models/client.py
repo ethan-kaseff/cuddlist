@@ -21,4 +21,12 @@ class Client(User):
                                 session_request in self.session_requests],
             "chatRooms": [chat_room.to_dict() for
                           chat_room in self.chat_rooms],
+            "type": self.type
+        }
+
+    def to_dict_for_session_request(self):
+        return {
+            "id": self.id,
+            "firstName": self.first_name,
+            "lastName": self.last_name,
         }

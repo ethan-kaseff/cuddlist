@@ -1,18 +1,30 @@
 import React, {useState} from 'react'
+import { useSelector } from 'react-redux'
 import ProfileInformation from './ProfileInformation'
+import SessionRequestCard from '../SessionRequestCard'
 
 
 function MyDashboard() {
+  const user = useSelector(state => state.session.user)
+  const requests = Object.values(user.sessionRequests)
+
+  requests.forEach(request => {
+    console.log(request)
+  })
+
   const [openTab, setOpenTab] = React.useState(1);
   const color = 'blue'
 
   // tabulation is using open source project Tailwind Starter Kit
   return (
-    <div>
-        <div className="flex flex-wrap w-11/12 justify-center items-center">
+    <div className='flex flex-col items-center'>
+        <h1
+        className='text-blue-300 font-bold text-3xl'
+        >Hi {user.firstName + ','}</h1>
+        <div className="flex justify-center m-8">
           <div className="w-full flex">
             <ul
-              className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
+              className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row h-32"
               role="tablist"
             >
               <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -50,7 +62,7 @@ function MyDashboard() {
                   href="#link2"
                   role="tablist"
                 >
-                  Settings
+                  Session Requests
                 </a>
               </li>
               {/* <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -77,25 +89,21 @@ function MyDashboard() {
               <div className="px-4 py-5 flex-auto">
                 <div className="tab-content tab-space">
                   <div className={openTab === 1 ? "block" : "hidden"} id="link1">
-                    <p>
-                      Collaboratively administrate empowered markets via
-                      plug-and-play networks. Dynamically procrastinate B2C users
-                      after installed base benefits.
-                      <br />
-                      <br /> Dramatically visualize customer directed convergence
-                      without revolutionary ROI.
-                    </p>
+                    <ProfileInformation />
                   </div>
                   <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-                    <p>
-                      Completely synergize resource taxing relationships via
-                      premier niche markets. Professionally cultivate one-to-one
-                      customer service with robust ideas.
-                      <br />
-                      <br />
-                      Dynamically innovate resource-leveling customer service for
-                      state of the art customer service.
-                    </p>
+                    <div>
+                      <h1>Session Requests</h1>
+                      {
+                        requests.map(request => {
+                          return (
+                            <>
+                              <SessionRequestCard request={request} />
+                            </>
+                          )
+                        })
+                      }
+                    </div>
                   </div>
                   {/* <div className={openTab === 3 ? "block" : "hidden"} id="link3">
                     <p>

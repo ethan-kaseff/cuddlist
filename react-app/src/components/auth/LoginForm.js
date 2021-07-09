@@ -62,8 +62,12 @@ const LoginForm = () => {
         />
         <div className='flex justify-center m-2'>
           <button type="submit"
-          className='bg-purple-400 hover:bg-purple-500 rounded-full shadow-lg text-white font-bold w-1/2 p-1 text-lg'>
+          className='bg-purple-400 hover:bg-purple-500 rounded-full shadow-lg text-white font-bold w-2/5 p-1 text-lg m-1'>
             Login
+          </button>
+          <button onClick={() => dispatch(login('client1@client.com', 'password'))}
+            className='bg-purple-400 hover:bg-purple-500 rounded-full shadow-lg text-white font-bold w-2/5 p-1 text-lg m-1'>
+            Demo
           </button>
         </div>
       </form>
