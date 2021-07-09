@@ -3,6 +3,6 @@ from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired
 
 
-class MessageForm(FlaskForm):
+class ImageForm(FlaskForm):
     cuddlist_id = IntegerField('cuddlist id', validators=[DataRequired()])
     url = StringField('url', validators=[DataRequired()])
