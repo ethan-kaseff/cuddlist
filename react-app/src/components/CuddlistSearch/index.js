@@ -9,6 +9,8 @@ function CuddlistSearch() {
   const locations = useSelector(state => state.cuddlist.locations)
   const [location, setLocation] = useState('')
 
+  const [badLocation, setBadLocation] = useState('hidden')
+
 
   useEffect(() => {
     dispatch(getCuddlistLocations())
@@ -16,6 +18,10 @@ function CuddlistSearch() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(typeof(location))
+    if (location == '') {
+      setBadLocation('')
+    }
     history.push(`/search-results/${location}`);
   }
 
@@ -29,15 +35,16 @@ function CuddlistSearch() {
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           >
-            <option default>Pick a Location...</option>
+            <option selected value='bad'>Pick a Location...</option>
           {
             Object.keys(locations).map( location => {
               return <option key={location} value={location}>{location}</option>
             })
           }
         </select>
-        <button className='bg-blue-300 text-white rounded-full hover:bg-blue-400 focus:outline-none w-12 h-12'>
+        <button className='bg-blue-300 text-white rounded-full hover:bg-blue-400 focus:outline-none w-12 h-12 relative'>
           <i class="fas fa-search fa-lg"></i>
+          <div className={"absolute -right-16 top-0 -mt-2 -mr-2 rounded-full bg-red-500 p-1 text-xs shadow w-24 h-6 " + badLocation}>Use pulldown</div>
         </button>
       </form>
     </div>
