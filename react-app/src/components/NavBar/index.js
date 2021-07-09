@@ -19,7 +19,7 @@ const NavBar = () => {
 
       </div>
       <div className='flex justify-center items-center pr-4 md:hidden'>
-        <i class="fas fa-bars fa-lg"></i>
+        <i className="fas fa-bars fa-lg"></i>
       </div>
       <ul className='md:flex justify-between items-center w-4/5 list-none pl-8 pr-4 hidden max-w-2xl'>
         <li>
