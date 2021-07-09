@@ -30,7 +30,7 @@ function CuddlistSearch() {
 
   // used open source project Tailwind Templates for guidance and styling
   return (
-    <div className='p-6 bg-white flex flex-row items-center rounded-full shadow-xl w-2/5 min-w-min max-w-md'>
+    <div className='p-6 bg-white flex flex-row items-center rounded-full shadow-xl w-2/5 min-w-min max-w-md m-32'>
       <form onSubmit={handleSubmit} className="flex w-full justify-around">
         <select 
           name="cuddlist__location" 

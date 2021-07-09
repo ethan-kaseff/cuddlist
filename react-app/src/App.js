@@ -65,9 +65,9 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/profile-page' exact={true}>
+        {/* <ProtectedRoute path='/profile-page' exact={true}>
           <ProfileInformation />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
       </Switch>
     </BrowserRouter>
   );
