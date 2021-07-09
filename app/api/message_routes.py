@@ -1,6 +1,4 @@
 from flask import Blueprint, jsonify, request
-from flask.globals import session
-from flask.signals import message_flashed
 from flask_login import login_required, current_user
 from app.models import db, SessionRequest, Client, Cuddlist, User
 from app.forms import MessageForm
