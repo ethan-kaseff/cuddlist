@@ -31,7 +31,7 @@ def updateUsers(id):
         print('-----------------------printing client_cuddlist in route------------------')
         form = UserForm()
         client_cuddlist = Cuddlist.query.get(id)
-        print(client_cuddlist)
+        print('CUDDLIST', client_cuddlist)
 
         client_cuddlist.session_price = form.data['session_price']
         client_cuddlist.travel_price = form.data['travel_price']
@@ -50,9 +50,6 @@ def updateUsers(id):
     client_cuddlist.last_name = form.data['last_name']
     client_cuddlist.pronouns = form.data['pronouns']
 
-    if request.method == 'DELETE':
-        db.session.delete(client_cuddlist)
-
     db.session.commit()
 
     return client_cuddlist.to_dict()
@@ -62,17 +59,9 @@ def updateUsers(id):
 # @login_required
 def deleteUser(id):
     user = User.query.filter(User.id == id).delete()
+    db.session.commit()
 
-    # if user.type == 'cuddlists':
-    #     client_cuddlist = Cuddlist.query.get(id)
-
-    # else:
-    #     client_cuddlist = Client.query.get(id)
-
-    # db.session.delete(client_cuddlist)
-    # db.session.commit()
-
-    return user.to_dict()
+    return {"Success": 'User Deleted'}
 
 
 @user_routes.route('/cuddlist-locations')

@@ -12,5 +12,5 @@ class UserForm(FlaskForm):
     about_me = TextAreaField('about me')
     session_info = TextAreaField('session info')
     location = TextAreaField('location')
-    live = BooleanField
+    live = BooleanField('live')
     phone_number = IntegerField('phone number')
