@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 9e49b0e15fe4
+Revision ID: b8cb080d05c8
 Revises: 
-Create Date: 2021-07-09 12:05:11.616735
+Create Date: 2021-07-11 16:16:20.568324
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '9e49b0e15fe4'
+revision = 'b8cb080d05c8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,7 +32,7 @@ def upgrade():
     op.create_table('clients',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('phone_number', sa.String(), nullable=True),
-    sa.ForeignKeyConstraint(['id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('cuddlists',
@@ -43,7 +43,7 @@ def upgrade():
     sa.Column('session_info', sa.Text(), nullable=True),
     sa.Column('location', sa.String(length=100), nullable=True),
     sa.Column('live', sa.Boolean(), nullable=True),
-    sa.ForeignKeyConstraint(['id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('chat_rooms',
@@ -66,8 +66,8 @@ def upgrade():
     sa.Column('client_id', sa.Integer(), nullable=True),
     sa.Column('cuddlist_id', sa.Integer(), nullable=True),
     sa.Column('form', postgresql.JSON(astext_type=sa.Text()), nullable=False),
-    sa.ForeignKeyConstraint(['client_id'], ['clients.id'], ),
-    sa.ForeignKeyConstraint(['cuddlist_id'], ['cuddlists.id'], ),
+    sa.ForeignKeyConstraint(['client_id'], ['clients.id'], ondelete='SET NULL'),
+    sa.ForeignKeyConstraint(['cuddlist_id'], ['cuddlists.id'], ondelete='SET NULL'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('messages',

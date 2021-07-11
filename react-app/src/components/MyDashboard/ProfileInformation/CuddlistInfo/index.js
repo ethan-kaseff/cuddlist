@@ -13,25 +13,6 @@ const CuddlistInfo = ({context}) => {
     aboutMe, setAboutMe,
     sessionInfo, setSessionInfo} = context
 
-  // const dispatch = useDispatch();
-
-  // const user = useSelector(state => state.session.user);
-  // const updateUser = useSelector(state => state.session.updateUser);
-
-  // // Boolean values to track what we are editing
-  // const [editSessionPrice, setEditSessionPrice] = useState(false);
-  // const [editTravelPrice, setEditTravelPrice] = useState(false);
-  // const [editLocation, setEditLocation] = useState(false);
-  // const [editAboutMe, setEditAboutMe] = useState(false);
-  // const [editSessionInfo, setEditSessionInfo] = useState(false);
-
-  // // Field values to keep in local state
-  // const [sessionPrice, setSessionPrice] = useState(user.session_price);
-  // const [travelPrice, setTravelPrice] = useState(user.travel_price);
-  // const [location, setLocation] = useState(user.location);
-  // const [aboutMe, setAboutMe] = useState(user.about_me);
-  // const [sessionInfo, setSessionInfo] = useState(user.session_info);
-
   // Focus on input when it shows up
   useEffect(() => {
     const input = document.getElementById('input');
@@ -39,17 +20,6 @@ const CuddlistInfo = ({context}) => {
       input.focus();
     }
   })
-
-  // // Update store for each keystroke in each field 
-  // useEffect(() => {
-  //   updateUser.session_price = sessionPrice;
-  //   updateUser.travel_price = travelPrice;
-  //   updateUser.location = location;
-  //   updateUser.about_me = aboutMe;
-  //   updateUser.session_info = sessionInfo;
-  //   dispatch(setUpdateUser(updateUser))
-  // }, [sessionPrice, travelPrice, location, aboutMe, sessionInfo])
-
 
   return (
     <>

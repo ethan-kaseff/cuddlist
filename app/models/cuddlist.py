@@ -6,13 +6,17 @@ class Cuddlist(User):
     __tablename__ = 'cuddlists'
     __mapper_args__ = {'polymorphic_identity': 'cuddlists'}
 
-    id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    id = db.Column(db.Integer, db.ForeignKey(
+        'users.id', ondelete='CASCADE'), primary_key=True)
     session_price = db.Column(db.Integer)
     travel_price = db.Column(db.Integer)
     about_me = db.Column(db.Text)
     session_info = db.Column(db.Text)
     location = db.Column(db.String(100))
     live = db.Column(db.Boolean)
+
+    user = db.relationship('User', backref=db.backref(
+        'cuddlist', passive_deletes=True))
 
     def to_dict(self):
         return {
@@ -31,7 +35,9 @@ class Cuddlist(User):
             "chatRooms": [chat_room.to_dict() for
                           chat_room in self.chat_rooms],
             "type": self.type,
-            "life": self.live
+            "live": self.live,
+            'images': [image.to_dict() for
+                       image in self.images],
         }
 
     def to_dict_for_session_request(self):

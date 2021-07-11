@@ -6,7 +6,7 @@ function SessionRequestCard({request}) {
 
   const date = new Date(request.form.sessionDate)
   const formattedDate = date.toDateString()
-
+  // debugger
   return (
     <div className='p-4'>
       <div className="shadow-xl rounded-lg bg-blue-200 p-3">
@@ -24,8 +24,8 @@ function SessionRequestCard({request}) {
               </td>
               <td></td>
               <td>
-                {user.type == 'clients' && request.cuddler.firstName + ' ' + request.cuddler.lastName}
-                {user.type == 'cuddlists' && request.client.firstName + ' ' + request.client.lastName}
+                {user.type === 'clients' && (!request.cuddler === false ? request.cuddler.firstName + ' ' + request.cuddler.lastName : 'Cuddlist Profile Deleted')}
+                {user.type === 'cuddlists' && (!request.client === false ? request.client.firstName + ' ' + request.client.lastName : 'Client Profile Deleted')}
               </td>
             </tr>
             <tr>

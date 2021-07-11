@@ -9,7 +9,10 @@ class Image(db.Model):
                             nullable=False)
     image_url = db.Column(db.String, nullable=False)
 
-    cuddlist = db.relationship('Cuddlist', foreign_keys=[cuddlist_id], backref='images', uselist=False)
+    cuddlist = db.relationship('Cuddlist',
+                               foreign_keys=[cuddlist_id],
+                               backref=db.backref('images', cascade='all'),
+                               uselist=False)
 
     def to_dict(self):
         return {

@@ -89,6 +89,7 @@ function MyDashboard() {
               <div className="px-4 py-5 flex-auto shadow-inner">
                 <div className="tab-content tab-space">
                   <div className={openTab === 1 ? "block" : "hidden"} id="link1">
+                    <h1 className='text-center text-blue-500 mb-5 font-bold text-xl'>Profile Information</h1>
                     <ProfileInformation />
                   </div>
                   <div className={openTab === 2 ? "block" : "hidden"} id="link2">

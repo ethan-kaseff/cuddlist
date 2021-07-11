@@ -22,7 +22,7 @@ def getProfile(id):
         return client.to_dict()
 
 
-@user_routes.route('/<int:id>/', methods=['PUT', 'DELETE'])
+@user_routes.route('/<int:id>/', methods=['PUT'])
 # @login_required
 def updateUsers(id):
     user = User.query.get(id)
@@ -56,6 +56,23 @@ def updateUsers(id):
     db.session.commit()
 
     return client_cuddlist.to_dict()
+
+
+@user_routes.route('/<int:id>/', methods=['DELETE'])
+# @login_required
+def deleteUser(id):
+    user = User.query.filter(User.id == id).delete()
+
+    # if user.type == 'cuddlists':
+    #     client_cuddlist = Cuddlist.query.get(id)
+
+    # else:
+    #     client_cuddlist = Client.query.get(id)
+
+    # db.session.delete(client_cuddlist)
+    # db.session.commit()
+
+    return user.to_dict()
 
 
 @user_routes.route('/cuddlist-locations')

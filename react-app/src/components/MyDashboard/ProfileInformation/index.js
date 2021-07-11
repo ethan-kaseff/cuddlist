@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import CuddlistInfo from "./CuddlistInfo";
 import ClientInfo from "./ClientInfo";
+import ImageUpload from "./ImageUpload";
 import {updateUserDb} from '../../../store/session'
 
 const ProfileInformation = () => {
@@ -205,7 +206,28 @@ const ProfileInformation = () => {
           type='submit'>Save</button>
         </div>
       </form>
-      
+      {user.type == 'cuddlists' &&
+      <div>
+        <h1 className='text-center text-blue-500 mb-5 font-bold text-xl'>Upload a photo for your page</h1>
+        <ImageUpload />
+      </div>
+      }
+      <div>
+        <div class="mb-2"> <span>Attachments</span>
+          <div class="relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+            <div class="absolute">
+              <div class="flex flex-col items-center "> 
+                <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> 
+                <span class="block text-gray-400 font-normal">Attach you files here</span> 
+                <span class="block text-gray-400 font-normal">or</span> 
+                <span class="block text-blue-400 font-normal">Browse files</span> 
+              </div>
+            </div> 
+              <input type="file" class="h-full w-full opacity-0" name=""></input>
+            </div>
+              <div class="flex justify-between items-center text-gray-400"> <span>Accepted file type:.doc only</span> <span class="flex items-center "><i class="fa fa-lock mr-1"></i> secure</span> </div>
+          </div>
+      </div>
     </>
   )
 }
