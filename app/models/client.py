@@ -1,3 +1,4 @@
+from sqlalchemy.orm import backref
 from .db import db
 from .user import User
 
@@ -6,8 +7,11 @@ class Client(User):
     __tablename__ = 'clients'
     __mapper_args__ = {'polymorphic_identity': 'clients'}
 
-    id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), primary_key=True)
     phone_number = db.Column(db.String)
+
+    user = db.relationship('User', backref=db.backref(
+        'client', passive_deletes=True))
 
     def to_dict(self):
         return {

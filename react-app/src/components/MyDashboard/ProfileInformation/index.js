@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import CuddlistInfo from "./CuddlistInfo";
 import ClientInfo from "./ClientInfo";
+import ImageUpload from "./ImageUpload";
+import DeleteFormModal from "./DeleteModal";
 import {updateUserDb} from '../../../store/session'
 
 const ProfileInformation = () => {
@@ -119,6 +121,7 @@ const ProfileInformation = () => {
     dispatch(updateUserDb(userToSend))
   }
 
+  // used creative-tim.com for some styling 
   return (
     <>
       <div>
@@ -205,7 +208,29 @@ const ProfileInformation = () => {
           type='submit'>Save</button>
         </div>
       </form>
-      
+      {user.type == 'cuddlists' &&
+      <div>
+        <h1 className='text-center text-blue-500 mb-5 font-bold text-xl'>Upload a photo for your page</h1>
+        <ImageUpload />
+      </div>
+      }
+      <div>
+        <div className="mb-2"> <span>Attachments</span>
+          <div className="relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+            <div className="absolute">
+              <div className="flex flex-col items-center "> 
+                <i className="fa fa-cloud-upload fa-3x text-gray-200"></i> 
+                <span className="block text-gray-400 font-normal">Attach you files here</span> 
+                <span className="block text-gray-400 font-normal">or</span> 
+                <span className="block text-blue-400 font-normal">Browse files</span> 
+              </div>
+            </div> 
+              <input type="file" className="h-full w-full opacity-0" name=""></input>
+            </div>
+              <div className="flex justify-between items-center text-gray-400"> <span>Accepted file type:.doc only</span> <span className="flex items-center "><i className="fa fa-lock mr-1"></i> secure</span> </div>
+          </div>
+      </div>
+      <DeleteFormModal />
     </>
   )
 }

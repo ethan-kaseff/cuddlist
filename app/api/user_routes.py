@@ -22,7 +22,7 @@ def getProfile(id):
         return client.to_dict()
 
 
-@user_routes.route('/<int:id>/', methods=['PUT', 'DELETE'])
+@user_routes.route('/<int:id>/', methods=['PUT'])
 # @login_required
 def updateUsers(id):
     user = User.query.get(id)
@@ -31,7 +31,7 @@ def updateUsers(id):
         print('-----------------------printing client_cuddlist in route------------------')
         form = UserForm()
         client_cuddlist = Cuddlist.query.get(id)
-        print(client_cuddlist)
+        print('CUDDLIST', client_cuddlist)
 
         client_cuddlist.session_price = form.data['session_price']
         client_cuddlist.travel_price = form.data['travel_price']
@@ -50,12 +50,18 @@ def updateUsers(id):
     client_cuddlist.last_name = form.data['last_name']
     client_cuddlist.pronouns = form.data['pronouns']
 
-    if request.method == 'DELETE':
-        db.session.delete(client_cuddlist)
-
     db.session.commit()
 
     return client_cuddlist.to_dict()
+
+
+@user_routes.route('/<int:id>/', methods=['DELETE'])
+# @login_required
+def deleteUser(id):
+    user = User.query.filter(User.id == id).delete()
+    db.session.commit()
+
+    return {"Success": 'User Deleted'}
 
 
 @user_routes.route('/cuddlist-locations')

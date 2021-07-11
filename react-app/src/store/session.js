@@ -75,7 +75,6 @@ export const signUp = (email, password, firstName, lastName, cuddlist) => async 
 }
 
 export const updateUserDb =(user) =>async (dispatch) => {
-    console.log('userrrrrrrrrr', user)
     const {
         id,
         firstName,
@@ -136,6 +135,17 @@ export const updateUserDb =(user) =>async (dispatch) => {
     dispatch(setUser(data));
 
 };
+
+export const deleteProfile = (id) => async (dispatch) => {
+    const response = await fetch(`/api/users/${id}/`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    await response.json();
+    dispatch(removeUser())
+}
 
 
 
