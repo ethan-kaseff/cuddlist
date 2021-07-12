@@ -1,98 +1,203 @@
-# Flask React Project
+# Cuddlist
+*By Ethan Kaseff - [Visit Cuddlist](http://cuddlist.herokuapp.com/)*
 
-This is the backend for the Flask React project.
+## Cuddlist an Overview
+Cuddlist is a full stack application utilizing a Python/Flask backend and an Javascript/React/Redux frontend. It is a clone of www.cuddlist.com with added functionality, such as sending and tracking session reqeusts in app. 
 
-## Getting started
+### Frontend Technologies Used:
+#### React
+Cuddlist is a react application organized into modular components for easy control and management. 
 
-1. Clone this repository (only this branch)
+#### Redux
+Redux was used to track state across the global application whenever needed. For example the redux store holds the session user giving the application access to user data, images and session requests.
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+#### Tailwind CSS
+Cuddlist uses Tailwind, which is a low level CSS Framework, for styling and design. The design is a mix of personal architecture and open source resources graciously available around the web. 
 
-2. Install dependencies
+### Backend Technologies Used
+#### Flask
+Cuddlist uses Flask with Python as the backend server. 
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+# In Action
+## Splash Page
+The home page serves as the main search page as well. The location dropdown autopopulates from the locations in the database so it always stays up to date. The search button also has error handling in case a user forgets to pick a location first.
+![image](https://user-images.githubusercontent.com/67133581/125265471-7d656400-e2ca-11eb-98e8-f0fb0df188e7.png)
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+## Send Request Button
+The button to send a request ensures that only someone that is logged in as a client can actually send a request. Users that aren't logged in and Cuddlists, can view Cuddlist profiles, but cannot send a reqeust. 
+![image](https://user-images.githubusercontent.com/67133581/125266047-067c9b00-e2cb-11eb-935a-15e9417620b2.png)
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+```jsx
+function SessionRequestFormModal({id}) {
+  const [showModal, setShowModal] = useState(false);
+  const [cuddlist, setCuddlist] = useState(false)
+  const [buttonColor, setButtonColor] = useState('bg-blue-500 hover:bg-blue-600')
 
-   ```bash
-   pipenv shell
-   ```
+  const user = useSelector(state => state.session.user)
 
-   ```bash
-   flask db upgrade
-   ```
+  useEffect(() => {
+    if (user) {
+      if (user.type === 'cuddlists'){
+        setCuddlist(true)
+        setButtonColor('bg-gray-300')
 
-   ```bash
-   flask seed all
-   ```
+      }
+    } else {
+      setCuddlist(true)
+      setButtonColor('bg-gray-300')
+    }
+  }, [user])
 
-   ```bash
-   flask run
-   ```
+  return (
+    <>
+      <button className={buttonColor + ` rounded-lg shadow-lg text-white font-bold w-full p-1 text-lg m-1`}
+      disabled={cuddlist}
+      type='button'
+      onClick={() => setShowModal(true)}>
+        Send Session Request
+      </button>
+      { cuddlist &&
+        <p className='text-sm text-red-600 font-hairline text-center p-2 m-3'>
+                Login as a client to send requests
+              </p>
+      }
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <SessionRequestForm id={id}/>
+        </Modal>
+      )}
+    </>
+  );
+}
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+export default SessionRequestFormModal;
+```
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+## Session Request Form
+The site utilizes modals whenever possible for easy use and navigation. Session request forms were an obvious place to use a modal as it mimiced the third party functionality the other site has, and barely gets the user off of the site before getting placed back to continue navigating. 
+![image](https://user-images.githubusercontent.com/67133581/125267408-632c8580-e2cc-11eb-9fb3-c7db1ec47f2a.png)
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+## Tabbed profile page with in-line editing
+The profile page is easy to navigate with a helpful tab to distinguish between personal information and session requests. The editing is intuitive with users able to click anywhere on a field (or specifically the small editing button) to trigger the div to switch over to an input. 
+The "Save" Button starts off as gray and disabled and turns blue after some type of change has occured to let the user know they can save now. 
+![image](https://user-images.githubusercontent.com/67133581/125266558-8c004b00-e2cb-11eb-84e4-8040fcf8236b.png)
 
-## Deploy to Heroku
+https://user-images.githubusercontent.com/67133581/125269396-45602000-e2ce-11eb-9758-7a790f448f96.mov
 
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
+```jsx
+// Code below is just showing what one path looks like
 
-   ```bash
-   heroku login
-   ```
+const ProfileInformation = () => {
+  const dispatch = useDispatch();
 
-5. Login to the heroku container registry
+  const user = useSelector(state => state.session.user);
 
-   ```bash
-   heroku container:login
-   ```
+  // Boolean values to track what we are editing
+  const [editFirstName, setEditFirstName] = useState(false);
 
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
+  // Field values to keep in local state
+  const [firstName, setFirstName] = useState(user.firstName);
 
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
+  const [buttonColor, setButtonColor] = useState('bg-gray-500')
+  useEffect(() => {
+    if (firstName !== user.firstName ||
+     phoneNumber !== user.phoneNumber) {
+     setButtonColor('bg-blue-700 hover:bg-blue-500')
+        }
+    },[firstName, user.firstName])
+  
+  // Focus on input when it shows up
+  useEffect(() => {
+    const input = document.getElementById('input');
+    if (input) {
+      input.focus();
+    }
+  })
 
-8. Release your docker container to heroku
+return (
+      <form onSubmit={handleSubmit}>
+        <table className='table-fixed'>
+          <tbody className='divide-y-2'>
+            <tr>
+              <td className='w-32'>First Name</td>
+              <td className=''>
+                <div>
+                  {!editFirstName && <span onClick={() => setEditFirstName(true)}>{firstName} <i className="fas fa-edit fa-xs"></i></span>}
+                  {editFirstName &&
+                    <input
+                      id='input'
+                      type='text'
+                      name='firstNameUpdate'
+                      onChange={(e) => setFirstName(e.target.value)}
+                      value={firstName}
+                      placeholder='First Name'
+                      onBlur={() => setEditFirstName(false)}
+                    ></input>
+                  }
+                </div>
+              </td>
+            </tr>
+            
+   ......
 
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
+```
 
-9. set up your database:
 
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
 
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
 
-11. profit
+
+## Responsive Image Upload and Delete with AWS
+Images are easy to upload and delete with previews being available immediately upon upload and removed immediately upon deletion. 
+![image](https://user-images.githubusercontent.com/67133581/125266737-ba7e2600-e2cb-11eb-8183-535275db9db1.png)
+
+
+https://user-images.githubusercontent.com/67133581/125268485-5e1c0600-e2cd-11eb-8b50-2cb3196222fb.mov
+
+```jsx
+{user.type === 'cuddlists' &&
+        <div>
+          <h1 className='text-center text-blue-500 mb-5 font-bold text-xl'>Upload a photo for your page</h1>
+          <ImageUpload />
+          <div className='flex flex-wrap'>
+            { user.images &&
+              user.images.map( image => {
+                return (
+                  <div className='w-1/2 p-6 flex justify-center flex-col relative'>
+                    <img src={image.imageUrl} alt={'photo' + image.id}></img>
+                    <button
+                      onClick={() => dispatch(deleteImage(image.id))}
+                      >
+                      <div className={"absolute right-8 top-8 rounded-full bg-red-500 p-1 text-xs shadow w-6 h-6 "}><i className="fas fa-times text-white"></i></div>
+
+                    </button>
+
+                  </div>
+                )
+              })
+            }
+          </div>
+          <div>
+
+          </div>
+        </div>
+      }
+```
+
+
+
+## Session Request Tracking
+Users can easily track session requests in their dashboard. A simple difference like "Client Name" and "Cuddlist Name" help distinguish the page and make it clear which type of user is currently using it. 
+![image](https://user-images.githubusercontent.com/67133581/125266903-e8fc0100-e2cb-11eb-823e-81542c7caa75.png)
+
+## Error Handling
+Light and effective error handling ensures that users don't get caught on a snag. Each error is clear and clearly placed, and only arrives right when there is an issue. 
+
+![image](https://user-images.githubusercontent.com/67133581/125267097-19439f80-e2cc-11eb-91d8-f589f963d9c8.png)
+
+
+
+## Summary and Going Forward 
+Cuddlist is a company that I have a personal conneciton with so it was great to delve into this project and get my hands dirty on a different side of that business. I enjoyed conceptualizing and building features that I know would be valuable to both the professionals and their clients. 
+
+In the future I would like to build the application further to include a messaging platform that would be seemlessly personal and easy for the client, and a robust CRM tool with notes and session reminders for the therapists. Beyond just the tracking of communication, the application could also intake financial data about sessions and budgeting, allowing for the site to serve as a larger one stop shop for individuals working in the field. 
