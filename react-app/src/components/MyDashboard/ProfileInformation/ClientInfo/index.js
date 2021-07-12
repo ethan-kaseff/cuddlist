@@ -13,22 +13,30 @@ const ClientInfo = ({context}) => {
   })
 
   return (
-    <>
-      <div>
-        <label>Phone Number: </label>
-        {!editPhoneNumber && <span onClick={() => setEditPhoneNumber(true)}>{phoneNumber} <i className="fas fa-edit fa-xs"></i></span>}
-        {editPhoneNumber &&
-          <input
-            id='input'
-            type='text'
-            name='phoneNumberUpdate'
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            value={phoneNumber}
-            onBlur={() => setEditPhoneNumber(false)}
-          ></input>
-        }
-      </div>
-    </>
+    <div>
+      <table className='table-fixed'> 
+        <tbody className="divide-y-2">
+          <tr>
+            <td className="w-32">Phone Number</td>
+            <td>
+              <div>
+                {!editPhoneNumber && <span onClick={() => setEditPhoneNumber(true)}>{phoneNumber} <i className="fas fa-edit fa-xs"></i></span>}
+                {editPhoneNumber &&
+                  <input
+                    id='input'
+                    type='text'
+                    name='phoneNumberUpdate'
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    value={phoneNumber}
+                    onBlur={() => setEditPhoneNumber(false)}
+                  ></input>
+                }
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   )
 }
 
