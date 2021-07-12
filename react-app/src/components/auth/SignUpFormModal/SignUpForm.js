@@ -28,10 +28,10 @@ const SignUpForm = () => {
     if (password !== repeatPassword) {
       errs.repeatPassword = 'Please use matching passwords'
     }
-    if (firstName.length < 3) {
+    if (firstName.length < 2) {
       errs.firstName = 'Please enter at least two characters'
     }
-    if (lastName.length < 3) {
+    if (lastName.length < 2) {
       errs.lastName = 'Please enter at least two characters'
     }
 
