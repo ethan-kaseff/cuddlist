@@ -121,7 +121,7 @@ const ProfileInformation = () => {
     dispatch(updateUserDb(userToSend))
   }
 
-  // used creative-tim.com for some styling 
+  
   return (
     <>
       <div>
@@ -214,7 +214,7 @@ const ProfileInformation = () => {
         <ImageUpload />
       </div>
       }
-      <div>
+      {/* <div>
         <div className="mb-2"> <span>Attachments</span>
           <div className="relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
             <div className="absolute">
@@ -229,7 +229,7 @@ const ProfileInformation = () => {
             </div>
               <div className="flex justify-between items-center text-gray-400"> <span>Accepted file type:.doc only</span> <span className="flex items-center "><i className="fa fa-lock mr-1"></i> secure</span> </div>
           </div>
-      </div>
+      </div> */}
       <DeleteFormModal />
     </>
   )
