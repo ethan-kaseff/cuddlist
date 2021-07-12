@@ -15,18 +15,16 @@ const LoginForm = () => {
     e.preventDefault();
 
     const errs = {}
-    if (!email.includes('@') && !email.includes('.com')) {
+    if (!email.includes('@') || !email.includes('.com')) {
       errs.email = 'Please enter a valid email'
     }
     if (password.length < 6) {
       errs.password = 'Please enter a password longer than 6 characters'
     }
-
-    if (errs === {}) {
+    if (errs) {
       const data = await dispatch(login(email, password));
-      console.log(data)
       if (data.errors) {
-        errs.dataError = data.errors
+        errs.dataErrors = data.errors
         // setErrors(data.errors);
       } 
       if (errs === {}) {
@@ -90,6 +88,13 @@ const LoginForm = () => {
           onChange={updatePassword}
           className='border-b m-auto mb-4 text-grey-400 p-2'
         />
+        {errors.dataErrors &&
+          errors.dataErrors.map(error => {
+            return (<p
+              className='text-sm text-red-400'
+            >{error}</p>)
+          })
+        }
         <div className='flex justify-center m-2'>
           <button type="submit"
           className='bg-purple-400 hover:bg-purple-500 rounded-full shadow-lg text-white font-bold w-2/5 p-1 text-lg m-1'>

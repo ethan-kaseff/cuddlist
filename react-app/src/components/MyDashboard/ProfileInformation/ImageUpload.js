@@ -23,7 +23,6 @@ function ImageUpload() {
     });
     if (res.ok) {
       const cuddlist = await res.json();
-      console.log(cuddlist)
       setImageLoading(false);
       setImage('')
       dispatch(addImage(cuddlist))
