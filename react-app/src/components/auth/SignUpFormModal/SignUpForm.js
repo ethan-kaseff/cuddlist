@@ -35,9 +35,8 @@ const SignUpForm = () => {
       errs.lastName = 'Please enter at least two characters'
     }
 
-
     setErrors(errs)
-    if (errs === {}) {
+    if (Object.values(errs).length === 0) {
       await dispatch(signUp(email, password, firstName, lastName, cuddlist));
       history.push('/my-dashboard')
     }
