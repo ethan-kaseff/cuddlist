@@ -23,10 +23,22 @@ def seed_images():
         image_url='https://cuddlist.com/wp-content/uploads/2016/09/AnnaJoy_Profile2.jpg'
     )
 
+    image5 = Image(
+        cuddlist_id=3,
+        image_url='https://cuddlist.s3.amazonaws.com/f503c80bd9c2452ba1599edc4c042673.jpg'
+    )
+
+    image6 = Image(
+        cuddlist_id=3,
+        image_url='https://cuddlist.s3.amazonaws.com/bce6bdd34b32493684a66d3dde204111.jpeg'
+    )
+
     db.session.add(image1)
     db.session.add(image2)
     db.session.add(image3)
     db.session.add(image4)
+    db.session.add(image5)
+    db.session.add(image6)
 
     db.session.commit()
 
