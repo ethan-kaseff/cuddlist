@@ -14,11 +14,14 @@ function SearchResults() {
   },[dispatch, location])
 
   return (
-    <div className='w-11/12 flex flex-col justify-center items-center'>
+    <div className='flex flex-col'>
+      <h2
+        className="text-blue-600 text-4xl font-regular mb-3 mt-4 text-center">
+        Cuddlists in your area</h2>
       {
         availableCuddlists.map((cuddlist) => {
           return (
-            <div key={cuddlist.id}>
+            <div className='flex justify-center' key={cuddlist.id}>
               <CuddlistCard cuddlist={cuddlist} />
             </div>
           )

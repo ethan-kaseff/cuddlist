@@ -35,15 +35,15 @@ const ProfileInformation = () => {
   // User
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [pronouns, setPronouns] = useState(user.pronouns ? user.pronouns : 'Click to add');
+  const [pronouns, setPronouns] = useState(user.pronouns);
   // Cuddlist
   const [sessionPrice, setSessionPrice] = useState(user.sessionPrice);
   const [travelPrice, setTravelPrice] = useState(user.travelPrice);
-  const [location, setLocation] = useState(user.location ? user.location : 'Click to add');
-  const [aboutMe, setAboutMe] = useState(user.aboutMe ? user.aboutMe : 'Click to add');
-  const [sessionInfo, setSessionInfo] = useState(user.sessionInfo ? user.sessionInfo : 'Click to add');
+  const [location, setLocation] = useState(user.location);
+  const [aboutMe, setAboutMe] = useState(user.aboutMe);
+  const [sessionInfo, setSessionInfo] = useState(user.sessionInfo);
   // Client
-  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber ? user.phoneNumber : 'Click to add');
+  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
 
   const cuddlistContext = {
     editSessionPrice, setEditSessionPrice,

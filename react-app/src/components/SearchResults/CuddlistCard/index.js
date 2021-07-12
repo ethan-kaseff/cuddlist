@@ -5,8 +5,8 @@ function CuddlistCard({cuddlist}) {
 
   // https://tailwindtemplates.io/cards/
   return (
-    <div className="bg-white shadow p-3 rounded sm:flex m-4 w-full">
-      <div className='w-full sm:w-1/4'>
+    <div className="bg-white shadow p-3 rounded sm:flex m-4 w-3/4">
+      <div className='w-full sm:w-8/12'>
         {cuddlist.images[0] &&
           // <div background-image={`url(${cuddlist.images[0].imageUrl})`}
           //   className="bg-cover bg-center bg-gray-300 h-32 rounded">
@@ -30,7 +30,7 @@ function CuddlistCard({cuddlist}) {
         </p>
         }
         <p className="text-sm text-gray-600 font-hairline w-10/12 text-center">
-          {cuddlist.aboutMe.slice(0,100)+ ' ....'}
+          {cuddlist.aboutMe.slice(0,150)+ ' ....'}
         </p>
         <div className="mt-6 flex justify-end items-center">
           <Link 
