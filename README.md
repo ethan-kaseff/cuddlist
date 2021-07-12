@@ -81,7 +81,6 @@ The site utilizes modals whenever possible for easy use and navigation. Session 
 ## Tabbed profile page with in-line editing
 The profile page is easy to navigate with a helpful tab to distinguish between personal information and session requests. The editing is intuitive with users able to click anywhere on a field (or specifically the small editing button) to trigger the div to switch over to an input. 
 The "Save" Button starts off as gray and disabled and turns blue after some type of change has occured to let the user know they can save now. 
-![image](https://user-images.githubusercontent.com/67133581/125266558-8c004b00-e2cb-11eb-84e4-8040fcf8236b.png)
 
 https://user-images.githubusercontent.com/67133581/125269396-45602000-e2ce-11eb-9758-7a790f448f96.mov
 
@@ -144,13 +143,8 @@ return (
 ```
 
 
-
-
-
 ## Responsive Image Upload and Delete with AWS
 Images are easy to upload and delete with previews being available immediately upon upload and removed immediately upon deletion. 
-![image](https://user-images.githubusercontent.com/67133581/125266737-ba7e2600-e2cb-11eb-8183-535275db9db1.png)
-
 
 https://user-images.githubusercontent.com/67133581/125268485-5e1c0600-e2cd-11eb-8b50-2cb3196222fb.mov
 
