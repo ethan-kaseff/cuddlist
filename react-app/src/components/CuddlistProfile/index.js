@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getCuddlist } from "../../store/cuddlist";
+import SessionRequestFormModal from "./SessionRequestModal";
 
 const CuddlistProfile = () => {
   const dispatch = useDispatch();
@@ -24,8 +25,8 @@ const CuddlistProfile = () => {
           {cuddlist.firstName}
         </div>
       </div>
-      <div className='flex justify-center mt-4'>
-        <div className='w-9/12 flex'>
+      <div className='flex justify-center mt-4 '>
+        <div className='w-9/12 flex max-w-4xl'>
           <div className="w-4/12">
             { cuddlist.images &&
               <div className="">
@@ -36,9 +37,7 @@ const CuddlistProfile = () => {
               </div>
             }
             <div className="shadow-md mt-2 divide-y-2 p-2">
-              <button className='bg-blue-500 hover:bg-blue-600 rounded-lg shadow-lg text-white font-bold w-full p-1 text-lg m-1'>
-                Send Session Request
-              </button>
+              <SessionRequestFormModal id={id}/>
               <p className='text-sm text-gray-600 font-hairline text-center p-2 m-3'>
                 By submitting a request, you acknowledge and agree to our Code of Conduct and Terms of Use.
               </p>

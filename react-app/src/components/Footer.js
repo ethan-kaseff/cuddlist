@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className='w-full h-12 bg-blue-300 text-white flex justify-center'>
+    <div className='w-full h-12 bg-blue-300 text-white flex justify-center mt-12'>
       <a href="https://github.com/ethan-kaseff" className="href m-3">
         <i className="fab fa-github fa-2x"></i>
       </a>

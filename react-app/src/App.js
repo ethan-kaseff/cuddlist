@@ -11,7 +11,6 @@ import UsersList from "./components/UsersList";
 import MyDashboard from "./components/MyDashboard";
 import User from "./components/User";
 import CuddlistProfile from "./components/CuddlistProfile";
-import SessionRequest from "./components/SessionRequest";
 import Home from "./components/Home";
 import SearchResults from "./components/SearchResults";
 import Chat from "./components/Chat";
@@ -58,9 +57,6 @@ function App() {
         {/* <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route> */}
-        <ProtectedRoute path='/cuddlists/:cuddlistId/session-request' exact={true}>
-          <SessionRequest />
-        </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList/>
         </ProtectedRoute>
