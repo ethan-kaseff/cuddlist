@@ -208,15 +208,15 @@ const ProfileInformation = () => {
         </table>
         
         
-        {user.type == 'cuddlists' && <CuddlistInfo context={cuddlistContext}/>}
-        {user.type == 'clients' && <ClientInfo context={clientContext}/>}
+        {user.type === 'cuddlists' && <CuddlistInfo context={cuddlistContext}/>}
+        {user.type === 'clients' && <ClientInfo context={clientContext}/>}
         <div className='flex justify-center m-4'>
           <button 
           className={buttonColor + ' rounded-full shadow-lg text-white font-bold w-2/5 p-1 text-lg m-1'}
           type='submit'>Save</button>
         </div>
       </form>
-      {user.type == 'cuddlists' &&
+      {user.type === 'cuddlists' &&
         <div>
           <h1 className='text-center text-blue-500 mb-5 font-bold text-xl'>Upload a photo for your page</h1>
           <ImageUpload />
