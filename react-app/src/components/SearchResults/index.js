@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { useParams } from 'react-router-dom';
-import CuddlistCard from '../CuddlistCard'
+import CuddlistCard from './CuddlistCard'
 import { getAvailableCuddlists } from '../../store/cuddlist';
 
 function SearchResults() {
@@ -14,7 +14,7 @@ function SearchResults() {
   },[dispatch, location])
 
   return (
-    <div className='cuddlist__results__container'>
+    <div className='w-11/12 flex flex-col justify-center items-center'>
       {
         availableCuddlists.map((cuddlist) => {
           return (
