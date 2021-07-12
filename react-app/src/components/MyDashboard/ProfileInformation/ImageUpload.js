@@ -1,8 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {useDispatch} from 'react-redux'
+import {addImage} from '../../../store/session'
 
 function ImageUpload() {
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
+  const [buttonColor, setButtonColor] = useState('bg-gray-500')
+  const dispatch = useDispatch()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,16 +22,18 @@ function ImageUpload() {
       body: formData,
     });
     if (res.ok) {
-      await res.json();
+      const cuddlist = await res.json();
+      console.log(cuddlist)
       setImageLoading(false);
       setImage('')
+      dispatch(addImage(cuddlist))
       // history.push("/images");
     }
     else {
       setImageLoading(false);
       // a real app would probably use more advanced
       // error handling
-      console.log("error");
+      // console.log("error");
     }
   }
 
@@ -35,6 +41,12 @@ function ImageUpload() {
     const file = e.target.files[0];
     setImage(file);
   }
+
+  useEffect(() => {
+    if (image) {
+      setButtonColor('bg-blue-700 hover:bg-blue-500')
+    }
+  }, [image])
 
   // used creative-tim.com for some styling 
   return (
@@ -60,9 +72,15 @@ function ImageUpload() {
           <div className="flex justify-between items-center text-gray-400"> <span>{image && image.name}</span> <span className="flex items-center "><i className="fa fa-lock mr-1"></i> secure</span> </div>
         </div>
       </div>
-      <button className={!image ? 'bg-gray-200' : 'bg-blue-200'}
-        disabled={!image} type="submit">Submit</button>
-      {(imageLoading) && <p>Loading...</p>}
+      <div className='flex justify-center'>
+        {(imageLoading) && <p>Loading...</p>}
+        <button
+          className={buttonColor + ' rounded-full shadow-lg text-white font-bold w-2/5 p-1 text-lg m-1'}
+          type='submit'
+          disabled={!image}>
+            Save
+        </button>
+      </div>
     </form>
   )
 }

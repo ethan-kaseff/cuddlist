@@ -8,10 +8,6 @@ function MyDashboard() {
   const user = useSelector(state => state.session.user)
   const requests = Object.values(user.sessionRequests)
 
-  requests.forEach(request => {
-    console.log(request)
-  })
-
   const [openTab, setOpenTab] = React.useState(1);
   const color = 'blue'
 

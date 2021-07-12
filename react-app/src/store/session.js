@@ -3,7 +3,7 @@ const SET_USER = 'session/SET_USER'
 const REMOVE_USER = 'session/REMOVE_USER'
 
 // action creators 
-const setUser = (user) => ({
+export const setUser = (user) => ({
     type: SET_USER,
     payload: user
 })
@@ -145,6 +145,21 @@ export const deleteProfile = (id) => async (dispatch) => {
     });
     await response.json();
     dispatch(removeUser())
+}
+
+export const deleteImage = (id) => async (dispatch) => {
+    const response = await fetch(`/api/images/${id}/`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    const data = await response.json();
+    dispatch(setUser(data))
+}
+
+export const addImage = (cuddlist) => async (dispatch) => {
+    dispatch(setUser(cuddlist))
 }
 
 

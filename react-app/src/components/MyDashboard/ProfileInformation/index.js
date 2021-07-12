@@ -5,6 +5,7 @@ import ClientInfo from "./ClientInfo";
 import ImageUpload from "./ImageUpload";
 import DeleteFormModal from "./DeleteModal";
 import {updateUserDb} from '../../../store/session'
+import { deleteImage } from "../../../store/session";
 
 const ProfileInformation = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const ProfileInformation = () => {
   // User
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [pronouns, setPronouns] = useState(user.pronouns ? user.pronouns : 'Pronouns');
+  const [pronouns, setPronouns] = useState(user.pronouns);
   // Cuddlist
   const [sessionPrice, setSessionPrice] = useState(user.sessionPrice);
   const [travelPrice, setTravelPrice] = useState(user.travelPrice);
@@ -68,6 +69,7 @@ const ProfileInformation = () => {
     if (firstName !== user.firstName ||
       lastName !== user.lastName ||
       location !== user.location ||
+      pronouns !== user.pronouns ||
       travelPrice !== user.travelPrice ||
       sessionInfo !== user.sessionInfo ||
       sessionPrice !== user.sessionPrice ||
@@ -78,6 +80,7 @@ const ProfileInformation = () => {
     }
   },[firstName, user.firstName,
     lastName, user.lastName,
+    pronouns, user.pronouns,
     location, user.location,
     travelPrice,  user.travelPrice,
     sessionInfo, user.sessionInfo,
@@ -92,7 +95,6 @@ const ProfileInformation = () => {
     if (input) {
       input.focus();
     }
-    console.log()
   })
 
   // Update store for each keystroke in each field 
@@ -106,7 +108,6 @@ const ProfileInformation = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('in the handle funciton ')
     let userToSend = {}
     if (user.type == 'cuddlists') {
       userToSend = {id: user.id,
@@ -139,11 +140,10 @@ const ProfileInformation = () => {
       </div>
       <form onSubmit={handleSubmit}>
         <table className='table-fixed'>
-          <tbody>
-
+          <tbody className='divide-y-2'>
             <tr>
-              <td className='w-1/4'>First Name</td>
-              <td className='w-2/4'>
+              <td className='w-32'>First Name</td>
+              <td className=''>
                 <div>
                   {!editFirstName && <span onClick={() => setEditFirstName(true)}>{firstName} <i className="fas fa-edit fa-xs"></i></span>}
                   {editFirstName &&
@@ -217,10 +217,31 @@ const ProfileInformation = () => {
         </div>
       </form>
       {user.type == 'cuddlists' &&
-      <div>
-        <h1 className='text-center text-blue-500 mb-5 font-bold text-xl'>Upload a photo for your page</h1>
-        <ImageUpload />
-      </div>
+        <div>
+          <h1 className='text-center text-blue-500 mb-5 font-bold text-xl'>Upload a photo for your page</h1>
+          <ImageUpload />
+          <div className='flex flex-wrap'>
+            { user.images &&
+              user.images.map( image => {
+                return (
+                  <div className='w-1/2 p-6 flex justify-center flex-col relative'>
+                    <img src={image.imageUrl} alt={'photo' + image.id}></img>
+                    <button
+                      onClick={() => dispatch(deleteImage(image.id))}
+                      >
+                      <div className={"absolute right-8 top-8 rounded-full bg-red-500 p-1 text-xs shadow w-6 h-6 "}><i className="fas fa-times text-white"></i></div>
+
+                    </button>
+
+                  </div>
+                )
+              })
+            }
+          </div>
+          <div>
+
+          </div>
+        </div>
       }
       <DeleteFormModal />
     </>
