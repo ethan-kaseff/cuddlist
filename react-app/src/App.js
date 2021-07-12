@@ -15,6 +15,7 @@ import SessionRequest from "./components/SessionRequest";
 import Home from "./components/Home";
 import SearchResults from "./components/SearchResults";
 import Chat from "./components/Chat";
+import Footer from "./components/Footer";
 
 import { authenticate } from "./store/session";
 
@@ -73,6 +74,7 @@ function App() {
           <ProfileInformation />
         </ProtectedRoute> */}
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
