@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Image
+from app.models import db, Image, Cuddlist
 from app.forms import ImageForm
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -33,11 +33,17 @@ def upload_image():
     new_image = Image(cuddlist_id=current_user.id, image_url=url)
     db.session.add(new_image)
     db.session.commit()
-    return {"url": url}
+
+    cuddlist = Cuddlist.query.filter(Cuddlist.id == current_user.id).one()
+    # return {"url": url}
+    return cuddlist.to_dict()
 
 
-@image_routes.route('/<int:id>', methods=['DELETE'])
+@image_routes.route('/<int:id>/', methods=['DELETE'])
 def delete_image(id):
+    image = Image.query.filter(Image.id == id).one()
+    cuddlist = Cuddlist.query.get(image.cuddlist_id)
     Image.query.filter(Image.id == id).delete()
     db.session.commit()
-    return {"Success": "Image Deleted"}
+    # return {"Success": "Image Deleted"}
+    return cuddlist.to_dict()

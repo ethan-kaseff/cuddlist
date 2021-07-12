@@ -35,7 +35,6 @@ export const getCuddlistLocations = () => async (dispatch) => {
 }
 
 export const getAvailableCuddlists = (location) => async (dispatch) => {
-  console.log('location', location)
   const response = await fetch(`/api/users/cuddlists/${location}`);
   const data = await response.json();
   dispatch(setAvailableCuddlists(data));

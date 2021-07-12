@@ -5,6 +5,7 @@ import ClientInfo from "./ClientInfo";
 import ImageUpload from "./ImageUpload";
 import DeleteFormModal from "./DeleteModal";
 import {updateUserDb} from '../../../store/session'
+import { deleteImage } from "../../../store/session";
 
 const ProfileInformation = () => {
   const dispatch = useDispatch();
@@ -94,7 +95,6 @@ const ProfileInformation = () => {
     if (input) {
       input.focus();
     }
-    console.log()
   })
 
   // Update store for each keystroke in each field 
@@ -108,7 +108,6 @@ const ProfileInformation = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('in the handle funciton ')
     let userToSend = {}
     if (user.type == 'cuddlists') {
       userToSend = {id: user.id,
@@ -218,10 +217,31 @@ const ProfileInformation = () => {
         </div>
       </form>
       {user.type == 'cuddlists' &&
-      <div>
-        <h1 className='text-center text-blue-500 mb-5 font-bold text-xl'>Upload a photo for your page</h1>
-        <ImageUpload />
-      </div>
+        <div>
+          <h1 className='text-center text-blue-500 mb-5 font-bold text-xl'>Upload a photo for your page</h1>
+          <ImageUpload />
+          <div className='flex flex-wrap'>
+            { user.images &&
+              user.images.map( image => {
+                return (
+                  <div className='w-1/2 p-6 flex justify-center flex-col relative'>
+                    <img src={image.imageUrl} alt={'photo' + image.id}></img>
+                    <button
+                      onClick={() => dispatch(deleteImage(image.id))}
+                      >
+                      <div className={"absolute right-8 top-8 rounded-full bg-red-500 p-1 text-xs shadow w-6 h-6 "}><i className="fas fa-times text-white"></i></div>
+
+                    </button>
+
+                  </div>
+                )
+              })
+            }
+          </div>
+          <div>
+
+          </div>
+        </div>
       }
       <DeleteFormModal />
     </>

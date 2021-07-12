@@ -20,10 +20,10 @@ const NavBar = () => {
       {/* <div className='w-1/4'>
 
       </div> */}
-      <div className='flex justify-center items-center pr-4 md:hidden'>
-        <i className="fas fa-bars fa-lg"></i>
-      </div>
-      <ul className='md:flex justify-between items-center w-3/8 list-none pl-8 pr-4 hidden max-w-3xl min-w-md'>
+      {/* <div className='flex justify-center items-center pr-4 md:hidden'>
+        <i className={"fas fa-bars fa-lg"}></i>
+      </div> */}
+      <ul className='flex justify-between items-center w-3/8 list-none pl-8 pr-4 max-w-3xl min-w-md'>
         {/* <li>
           <NavLink to="/chat" exact={true} activeClassName="active">
             Chat

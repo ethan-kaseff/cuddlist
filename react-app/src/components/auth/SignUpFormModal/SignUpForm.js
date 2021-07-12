@@ -13,15 +13,33 @@ const SignUpForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [cuddlist, setCuddlist] = useState(false);
+  const [errors, setErrors] = useState({})
 
   const onSignUp = async (e) => {
 
     e.preventDefault();
-    console.log(firstName, lastName, email, '......._____________________________')
+    const errs = {}
+    if (!email.includes('@') && !email.includes('.com')) {
+      errs.email = 'Please enter a valid email'
+    }
+    if (password.length < 6) {
+      errs.password = 'Please enter a password longer than 6 characters'
+    }
     if (password === repeatPassword) {
-      // const data = await 
+      errs.repeatPassword = 'Please use matching passwords'
+    }
+    if (firstName.length < 3) {
+      errs.firstName = 'Please enter at least two characters'
+    }
+    if (lastName.length < 3) {
+      errs.lastName = 'Please enter at least two characters'
+    }
+
+
+    setErrors(errs)
+    if (errs === {}) {
       await dispatch(signUp(email, password, firstName, lastName, cuddlist));
-      // could set errors later 
+      history.push('/my-dashboard')
     }
   };
 
@@ -60,6 +78,11 @@ const SignUpForm = () => {
         <div className="text-center text-blue-500 mb-5 font-bold text-xl">
           Sign Up
         </div>
+        { errors.email &&
+            <p
+              className='text-sm text-red-400'
+              >{errors.email}</p>
+        }
         <input
           type="text"
           name="email"
@@ -68,6 +91,11 @@ const SignUpForm = () => {
           placeholder='Email'
           className='border-b m-auto mb-4 text-grey-400 p-2'
         ></input>
+        {errors.password &&
+          <p
+            className='text-sm text-red-400'
+          >{errors.password}</p>
+        }
         <input
           type="password"
           name="password"
@@ -76,6 +104,11 @@ const SignUpForm = () => {
           placeholder='Password'
           className='border-b m-auto mb-4 text-grey-400 p-2'
         ></input>
+        {errors.repeatPassword &&
+          <p
+            className='text-sm text-red-400'
+          >{errors.repeatPassword}</p>
+        }
         <input
           type="password"
           name="repeat_password"
@@ -85,6 +118,11 @@ const SignUpForm = () => {
           placeholder='Repeat Password'
           className='border-b m-auto mb-4 text-grey-400 p-2'
         ></input>
+        {errors.firstName &&
+          <p
+            className='text-sm text-red-400'
+          >{errors.firstName}</p>
+        }
         <input
           type="text"
           name="firstName"
@@ -93,6 +131,11 @@ const SignUpForm = () => {
           placeholder='First Name'
           className='border-b m-auto mb-4 text-grey-400 p-2'
         ></input>
+        {errors.lastName &&
+          <p
+            className='text-sm text-red-400'
+          >{errors.lastName}</p>
+        }
         <input
           type="text"
           name="lastName"

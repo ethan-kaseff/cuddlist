@@ -17,6 +17,9 @@ function SessionRequestFormModal({id}) {
         setButtonColor('bg-gray-300')
 
       }
+    } else {
+      setCuddlist(true)
+      setButtonColor('bg-gray-300')
     }
   }, [user])
 
@@ -29,7 +32,9 @@ function SessionRequestFormModal({id}) {
         Send Session Request
       </button>
       { cuddlist &&
-        <p>*Must be a client to request a session</p>
+        <p className='text-sm text-red-600 font-hairline text-center p-2 m-3'>
+                Login as a client to send requests
+              </p>
       }
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
