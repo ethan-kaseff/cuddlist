@@ -64,7 +64,7 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     cuddlist = form.data['cuddlist']
     if form.validate_on_submit():
-    # if request.method == "POST":
+        # if request.method == "POST":
         if cuddlist:
             user = Cuddlist(
                 email=form.data['email'],
