@@ -48,6 +48,7 @@ function ImageUpload() {
   }, [image])
 
   // used creative-tim.com for some styling 
+  // https://bbbootstrap.com/snippets/tailwind-css-add-document-form-file-upload-input-37652196
   return (
     <form onSubmit={handleSubmit}>
       {/* <input
