@@ -25,7 +25,7 @@ const SignUpForm = () => {
     if (password.length < 6) {
       errs.password = 'Please enter a password longer than 6 characters'
     }
-    if (password === repeatPassword) {
+    if (password !== repeatPassword) {
       errs.repeatPassword = 'Please use matching passwords'
     }
     if (firstName.length < 3) {
