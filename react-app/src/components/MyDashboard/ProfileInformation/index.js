@@ -68,6 +68,7 @@ const ProfileInformation = () => {
     if (firstName !== user.firstName ||
       lastName !== user.lastName ||
       location !== user.location ||
+      pronouns !== user.pronouns ||
       travelPrice !== user.travelPrice ||
       sessionInfo !== user.sessionInfo ||
       sessionPrice !== user.sessionPrice ||
@@ -78,6 +79,7 @@ const ProfileInformation = () => {
     }
   },[firstName, user.firstName,
     lastName, user.lastName,
+    pronouns, user.pronouns,
     location, user.location,
     travelPrice,  user.travelPrice,
     sessionInfo, user.sessionInfo,
@@ -139,11 +141,10 @@ const ProfileInformation = () => {
       </div>
       <form onSubmit={handleSubmit}>
         <table className='table-fixed'>
-          <tbody>
-
+          <tbody className='divide-y-2'>
             <tr>
-              <td className='w-1/4'>First Name</td>
-              <td className='w-2/4'>
+              <td className='w-32'>First Name</td>
+              <td className=''>
                 <div>
                   {!editFirstName && <span onClick={() => setEditFirstName(true)}>{firstName} <i className="fas fa-edit fa-xs"></i></span>}
                   {editFirstName &&
