@@ -12,7 +12,7 @@ def getProfile(id):
     user = User.query.get(id)
     print(user)
     print('thats the user')
-    
+
     if user.type == "cuddlists":
         cuddlist = Cuddlist.query.get(id)
         return cuddlist.to_dict()
@@ -28,7 +28,7 @@ def updateUsers(id):
     user = User.query.get(id)
 
     if user.type == 'cuddlists':
-        print('-----------------------printing client_cuddlist in route------------------')
+        print('--------printing client_cuddlist in route------------------')
         form = UserForm()
         client_cuddlist = Cuddlist.query.get(id)
         print('CUDDLIST', client_cuddlist)
