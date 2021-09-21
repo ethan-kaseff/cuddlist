@@ -38,7 +38,7 @@ function SessionRequestFormModal({id}) {
       }
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <SessionRequestForm id={id}/>
+          <SessionRequestForm id={id} setShowModal={setShowModal}/>
         </Modal>
       )}
     </>

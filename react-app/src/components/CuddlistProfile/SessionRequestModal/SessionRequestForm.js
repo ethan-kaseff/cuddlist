@@ -3,7 +3,7 @@ import {useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {createSessionRequest} from '../../../store/sessionRequest'
 
-function SessionRequestForm({id}) {
+function SessionRequestForm({id, setShowModal}) {
   const dispatch = useDispatch()
   // const {cuddlistId} = useParams()
   const cuddlistId = id
@@ -26,6 +26,8 @@ function SessionRequestForm({id}) {
       getOutOfIt,
       questions
     ))
+
+    setShowModal(false)
   }
   
   // https://tailwindtemplates.io/forms/
