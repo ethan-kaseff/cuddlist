@@ -28,8 +28,8 @@ function MyDashboard() {
                   className={
                     "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
                     (openTab === 1
-                      ? "text-white bg-" + color + "-600"
-                      : "text-" + color + "-600 bg-white")
+                      ? "text-white bg-blue-600"
+                      : "text-blue-600 bg-white")
                   }
                   onClick={e => {
                     e.preventDefault();
@@ -47,8 +47,8 @@ function MyDashboard() {
                   className={
                     "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
                     (openTab === 2
-                      ? "text-white bg-" + color + "-600"
-                      : "text-" + color + "-600 bg-white")
+                      ? "text-white bg-blue-600"
+                      : "text-blue-600 bg-white")
                   }
                   onClick={e => {
                     e.preventDefault();
