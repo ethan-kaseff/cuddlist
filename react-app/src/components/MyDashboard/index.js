@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useSelector } from 'react-redux'
 import ProfileInformation from './ProfileInformation'
-import SessionRequestCard from '../SessionRequestCard'
+import SessionRequestCard from './SessionRequestCard'
 
 
 function MyDashboard() {
