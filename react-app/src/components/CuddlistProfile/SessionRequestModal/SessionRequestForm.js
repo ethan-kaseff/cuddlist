@@ -41,13 +41,18 @@ function SessionRequestForm({id, setShowModal}) {
           <label htmlFor="session-length"
             className=' text-gray-600 text-md font-semibold mb-2'
             >Session Length:  </label>
-          <input 
+          <select 
             type="number" 
             name="session-length" 
             value={sessionLength}
             onChange={(e) => setSessionLength(e.target.value)}
             className='border-b m-auto mb-4 text-grey-400 p-2'
-            />
+            >
+              <option value={30}>30 minutes</option>
+              <option value={60}>60 minutes</option>
+              <option value={90}>90 minutes</option>
+              <option value={120}>120 minutes</option>
+          </select>
         </div >
         <div className='mb-4'>
           <label htmlFor="session-date"
