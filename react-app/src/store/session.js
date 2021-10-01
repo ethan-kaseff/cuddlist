@@ -162,6 +162,17 @@ export const addImage = (cuddlist) => async (dispatch) => {
     dispatch(setUser(cuddlist))
 }
 
+export const deleteSessionRequest = (requestId, userId) => async (dispatch) => {
+    const response = await fetch(`/api/session-requests/${requestId}/${userId}/`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    const data = await response.json();
+    dispatch(setUser(data))
+}
+
 
 
 // reducer

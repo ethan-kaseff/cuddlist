@@ -128,6 +128,7 @@ const ProfileInformation = () => {
               phoneNumber}
     }
     dispatch(updateUserDb(userToSend))
+    setButtonColor('bg-gray-500')
   }
 
   
@@ -212,8 +213,9 @@ const ProfileInformation = () => {
         {user.type === 'clients' && <ClientInfo context={clientContext}/>}
         <div className='flex justify-center m-4'>
           <button 
-          className={buttonColor + ' rounded-full shadow-lg text-white font-bold w-2/5 p-1 text-lg m-1'}
-          type='submit'>Save</button>
+            className={buttonColor + ' rounded-full shadow-lg text-white font-bold w-2/5 p-1 text-lg m-1'}
+            type='submit'
+          >Save</button>
         </div>
       </form>
       {user.type === 'cuddlists' &&
