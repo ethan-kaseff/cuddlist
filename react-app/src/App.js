@@ -37,40 +37,36 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path='/chat' exact={true}>
-          <Chat />
-        </Route>
-        <Route path="/" exact={true}>
-          <Home />
-        </Route>
-        <Route path="/search-results/:location" exact={true}>
-          <SearchResults />
-        </Route>
-        <Route path="/cuddlists/:id" exact={true}>
-          <CuddlistProfile />
-        </Route>
-        {/* <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route> */}
-        {/* <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route> */}
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/my-dashboard" exact={true}>
-          <MyDashboard />
-        </ProtectedRoute>
-        {/* <ProtectedRoute path='/profile-page' exact={true}>
-          <ProfileInformation />
-        </ProtectedRoute> */}
-      </Switch>
-      <Footer />
+      <div className='relative min-h-screen'>
+        <div className='pb-12'>
+          <NavBar />
+          <Switch>
+            <Route path='/chat' exact={true}>
+              <Chat />
+            </Route>
+            <Route path="/" exact={true}>
+              <Home />
+            </Route>
+            <Route path="/search-results/:location" exact={true}>
+              <SearchResults />
+            </Route>
+            <Route path="/cuddlists/:id" exact={true}>
+              <CuddlistProfile />
+            </Route>
+            <ProtectedRoute path="/users" exact={true}>
+              <UsersList/>
+            </ProtectedRoute>
+            <ProtectedRoute path="/users/:userId" exact={true}>
+              <User />
+            </ProtectedRoute>
+            <ProtectedRoute path="/my-dashboard" exact={true}>
+              <MyDashboard />
+            </ProtectedRoute>
+          </Switch>
+        </div>
+        <Footer />
+
+      </div>
     </BrowserRouter>
   );
 }
