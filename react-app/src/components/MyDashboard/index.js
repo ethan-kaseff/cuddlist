@@ -96,6 +96,12 @@ function MyDashboard() {
                           return (
                             <>
                               <SessionRequestCard request={request} />
+                              {/* <button
+                                // onClick={() => dispatch(deleteImage(image.id))}
+                              >
+                                <div className={"absolute right-8 top-8 rounded-full bg-red-500 p-1 text-xs shadow w-6 h-6 "}><i className="fas fa-times text-white"></i></div>
+
+                              </button> */}
                             </>
                           )
                         })

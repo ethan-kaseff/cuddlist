@@ -29,3 +29,13 @@ def createSessionRequest():
     db.session.commit()
 
     return request.to_dict()
+
+
+@session_request_routes.route('/<int:requestId>/<int:userId>/', methods=['DELETE'])
+def delete_session_request(requestId, userId):
+    # request = SessionRequest.query.filter(SessionRequest.id == requestId).one()
+    user = User.query.filter(User.id == userId).one()
+    SessionRequest.query.filter(SessionRequest.id == requestId).delete()
+    # request.delete()
+    db.session.commit()
+    return user.to_dict()

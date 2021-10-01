@@ -8,6 +8,7 @@ function SessionRequestForm({id, setShowModal}) {
   // const {cuddlistId} = useParams()
   const cuddlistId = id
   const client = useSelector(state => state.session.user)
+  const cuddlistFirstName = useSelector(state => state.cuddlist.current.firstName);
 
   const [sessionLength, setSessionLength] = useState(0)
   const [sessionDate, setsessionDate] = useState('')
@@ -28,6 +29,7 @@ function SessionRequestForm({id, setShowModal}) {
     ))
 
     setShowModal(false)
+    setTimeout(() => window.alert(`Thank you for requesting a session with ${cuddlistFirstName}`), 200)
   }
   
   // https://tailwindtemplates.io/forms/

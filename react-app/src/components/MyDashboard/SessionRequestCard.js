@@ -1,14 +1,18 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+
+import {deleteSessionRequest} from './../../store/session'
 
 function SessionRequestCard({request}) {
+  const dispatch = useDispatch();
+
   const user = useSelector(state => state.session.user)
 
   const date = new Date(request.form.sessionDate)
   const formattedDate = date.toDateString()
   // debugger
   return (
-    <div className='p-4'>
+    <div className='p-4 relative'>
       <div className="shadow-xl rounded-lg bg-blue-200 p-3">
         <table className='table-fixed'>
           <thead>
@@ -58,6 +62,12 @@ function SessionRequestCard({request}) {
           </tbody>
         </table>
       </div>
+      <button
+        onClick={() => dispatch(deleteSessionRequest(request.id, user.id))}
+      >
+        <div className={"absolute right-8 top-8 rounded-full bg-red-500 p-1 text-xs shadow w-6 h-6 "}><i className="fas fa-times text-white"></i></div>
+
+      </button>
     </div>
   )
 }
